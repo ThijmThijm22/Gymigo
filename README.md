@@ -1,6 +1,6 @@
 # gymigo
 
-A new Flutter project.
+Gym App door Ferre en Thijmen
 
 ## Getting Started
 
