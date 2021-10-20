@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "353259976365",
+    "project_id": "gymigo-c05e7",
+    "storage_bucket": "gymigo-c05e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353259976365:android:adcc152e77d4351afbb824",
+        "android_client_info": {
+          "package_name": "com.example.gymigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353259976365-6i6gvavl2r2lltbel8lk5283c1mrovj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX0ZwnwKpD31TOoQVZv1i5T25ILRSh5z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353259976365-6i6gvavl2r2lltbel8lk5283c1mrovj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
