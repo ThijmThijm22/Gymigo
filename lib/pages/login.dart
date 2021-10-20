@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
         title: Text('Gymigo'),
         centerTitle: true,
         backgroundColor: Globals.background,
+        elevation: 0,
 
       ),
       
