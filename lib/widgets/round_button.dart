@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 
 class RoundButton extends StatelessWidget {
+  late String title;
   late double width;
   late double height;
   late Color bgColor;
 
-  RoundButton({ this.width = 300, this.height = 40, this.bgColor = Colors.green});
+  late Function pressed;
+
+  RoundButton({ this.width = 300, this.height = 40, this.bgColor = Colors.green, this.title = 'Click Me!', required this.pressed});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +17,11 @@ class RoundButton extends StatelessWidget {
               height: height,
               width: width,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  pressed();
+                },
                 child: Text(
-                  'Sign Up',
+                  title,
                   style: TextStyle(
                     letterSpacing: 2,
                     fontSize: 20,
@@ -24,6 +29,7 @@ class RoundButton extends StatelessWidget {
                   ),
                   ),
                   style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
                     backgroundColor: MaterialStateProperty.all(bgColor),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
