@@ -14,7 +14,6 @@ void main() => runApp(MaterialApp(
 
   theme: ThemeData(
     textTheme: GoogleFonts.latoTextTheme(),
-    backgroundColor: Color.fromARGB(255, 46, 46, 46),
     primaryColor: Colors.white,
   ),
 
