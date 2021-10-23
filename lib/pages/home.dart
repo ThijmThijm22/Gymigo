@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              'Welcome back, Ferre!',
+              'Welcome back, {NAME} !',
               style: TextStyle(
                 color: Globals.purple,
                 fontSize: 16,
@@ -55,6 +55,9 @@ class _HomeState extends State<Home> {
           ),
         ),
         DayCard(),
+        DayCard(),
+        DayCard(),
+        DayCard()
       ]),
     );
   }
