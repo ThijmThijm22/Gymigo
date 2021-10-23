@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
 import 'package:gymigo/widgets/dayCard.dart';
 
+// Firebase
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -10,8 +13,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   @override
   Widget build(BuildContext context) {
+    
+  User? user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       backgroundColor: Globals.background,
       body: Wrap(children: <Widget>[
@@ -31,7 +38,7 @@ class _HomeState extends State<Home> {
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              'Welcome back, {NAME} !',
+              user == null ? "Welcome Back" : "Welcome Back, " + user.email.toString(),
               style: TextStyle(
                 color: Globals.purple,
                 fontSize: 16,

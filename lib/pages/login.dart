@@ -8,7 +8,6 @@ import '../widgets/round_button.dart';
 import '../widgets/login_fields.dart';
 
 // Firebase
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
@@ -24,6 +23,7 @@ class _LoginState extends State<Login> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,39 +42,44 @@ class _LoginState extends State<Login> {
             SignUp(emailController: emailController, passwordController: passwordController),
 
 
-            Column(
-              children: [
-              SizedBox(height: 50),
-              RoundButton(bgColor: Globals.purple, title: 'Sign Up', 
-                pressed: () {
-                  try {
-                    FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                    Navigator.pushNamed(context, '/home');
-                  } on FirebaseAuthException catch (err) {
-                    print(err);
+            Form(
+              key: _key,
+              child: Column(
+                children: [
+                SizedBox(height: 50),
+                RoundButton(bgColor: Globals.purple, title: 'Sign Up', 
+                  pressed: () {
+                    try {
+                       FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      ).then((res) => Navigator.pushNamed(context, '/home'));
+                    } on FirebaseAuthException catch (err) {
+                      AlertDialog(
+                        title: Text(err.toString()),
+                      );
+                      print(err);
+                    }
                   }
-                }
-              ),
-
-              SizedBox(height: 30),
-
-              RoundButton(bgColor: Globals.background, title: 'Sign In',
-                pressed: () {
-                  try {
-                    FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                    Navigator.pushNamed(context, '/home');
-                  } on FirebaseAuthException catch (err) {
-                    print(err);
+                ),
+            
+                SizedBox(height: 30),
+            
+                RoundButton(bgColor: Globals.background, title: 'Sign In',
+                  pressed: () {
+                    try {
+                      FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+                      Navigator.pushNamed(context, '/home');
+                    } on FirebaseAuthException catch (err) {
+                      print(err);
+                    }
                   }
-                }
+                ),
+                ],
               ),
-              ],
             ),
             Padding(
              padding: EdgeInsets.only(
@@ -121,4 +126,13 @@ class SignUp extends StatelessWidget {
       ],
       );
   }
+}
+
+// Form Validation
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'E-mail adress is required';
+  }
+
+  return null;
 }
