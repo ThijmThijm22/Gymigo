@@ -13,7 +13,7 @@ class NewInput extends StatelessWidget {
     required this.controller,
     this.bgColor = const Color.fromARGB(255, 228, 230, 255),
     this.color = const Color.fromARGB(255, 135, 120, 120), 
-    this.obscure = false
+    this.obscure = false,
     });
 
   @override

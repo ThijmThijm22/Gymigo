@@ -8,15 +8,27 @@ import 'package:gymigo/pages/day.dart';
 // Google Fonts
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.latoTextTheme(),
-          primaryColor: Colors.white,
-        ),
-        initialRoute: '/home',
-        routes: {
-          '/login': (context) => Login(),
-          '/home': (context) => Home(),
-          '/day': (context) => Day(),
-        }));
+// Firebase
+import 'package:firebase_core/firebase_core.dart';
+
+Future <void> main() async{
+  WidgetsFlutterBinding();
+  await Firebase.initializeApp();
+
+  runApp(MaterialApp(
+
+    debugShowCheckedModeBanner: false,
+
+    theme: ThemeData(
+      textTheme: GoogleFonts.manropeTextTheme(),
+      primaryColor: Colors.white,
+    ),
+
+    initialRoute: '/login',
+    routes: {
+      '/login': (context) => Login(),
+      '/home': (context) => Home(),
+      '/day': (context) => Day(),
+    }
+  ));
+}
