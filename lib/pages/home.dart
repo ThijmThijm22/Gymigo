@@ -69,7 +69,8 @@ class _HomeState extends State<Home> {
           DayCard(),
           DayCard(),
           DayCard(),
-          DayCard()
+          DayCard(),
+
           // checken voor enumeraties in Flutter: enum maken met dagen van
           // de week en dan elke card een vaste waarden geven aan de hand
           // van de card & dag. card 1 = altijd Monday, ...
