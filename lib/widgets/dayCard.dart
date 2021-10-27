@@ -38,27 +38,20 @@ class _DayCardState extends State<DayCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-              child: TextField(
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+              child: Text(
+                'Topic for the day',
                 style: TextStyle(
                     color: Globals.textWhite,
-                    fontSize: 24,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "What will you train?",
-                  hintStyle: TextStyle(fontSize: 20.0, color: Globals.textGrey),
-                ),
               ),
             ),
           ],
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/day'
-        );
+        Navigator.pushNamed(context, '/day');
       },
     );
   }
