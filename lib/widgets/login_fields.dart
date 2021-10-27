@@ -7,6 +7,7 @@ class NewInput extends StatelessWidget {
   late Color bgColor;
   late Color color;
   late bool obscure;
+  final validate;
 
   NewInput({
     this.placeholder = "",
@@ -14,12 +15,13 @@ class NewInput extends StatelessWidget {
     this.bgColor = const Color.fromARGB(255, 228, 230, 255),
     this.color = const Color.fromARGB(255, 135, 120, 120), 
     this.obscure = false,
+    required this.validate
     });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: TextField(
+      child: TextFormField(
         decoration: InputDecoration(
           hintText: placeholder,
           filled: true,
@@ -33,6 +35,7 @@ class NewInput extends StatelessWidget {
           )
         ),
         controller: controller,
+        validator: validate,
         obscureText: obscure,
       ),
     );
