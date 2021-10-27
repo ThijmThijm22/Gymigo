@@ -55,11 +55,9 @@ class _DayCardState extends State<DayCard> {
         ),
       ),
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(builder: (context) {
-            return '/day';
-          }),
+          '/day'
         );
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'globals.dart';
@@ -24,6 +25,7 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  String errorMessage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +51,21 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 50),
                 RoundButton(bgColor: Globals.purple, title: 'Sign Up', 
                   pressed: () {
-                    try {
+                    if(_key.currentState!.validate()) {
+                      try {
                        FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
-                      ).then((res) => Navigator.pushNamed(context, '/home'));
-                    } on FirebaseAuthException catch (err) {
-                      AlertDialog(
-                        title: Text(err.toString()),
-                      );
+                      ).catchError((error) {
+                        print(error);
+                      }).then((res) => Navigator.pushNamed(context, '/home'));
+                    } on PlatformException catch (err) {
                       print(err);
+                    }on FirebaseAuthException catch (err) {
+                      print(err);
+                    }catch(err) {
+                      print(err);
+                    }
                     }
                   }
                 ),
@@ -71,13 +78,17 @@ class _LoginState extends State<Login> {
                       FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
-                      );
-                      Navigator.pushNamed(context, '/home');
+                      ).catchError((error) {
+                        print(error);
+                      }).then((res) => Navigator.pushNamed(context, '/home'));
+                      errorMessage = "";
                     } on FirebaseAuthException catch (err) {
-                      print(err);
+                      errorMessage = err.message!;
                     }
                   }
                 ),
+
+                Text(errorMessage),
                 ],
               ),
             ),
@@ -113,7 +124,7 @@ class SignUp extends StatelessWidget {
           left: 50,
           right: 50,
           child: 
-            NewInput(controller: emailController, placeholder: 'Enter Your Email'),
+            NewInput(controller: emailController, placeholder: 'Enter Your Email', validate: validateEmail,),
           ),
         Positioned(
           top: 200,
@@ -121,7 +132,7 @@ class SignUp extends StatelessWidget {
           left: 50,
           right: 50,
           child: 
-            NewInput(controller: passwordController,obscure: true, placeholder: 'Enter Your Password',),
+            NewInput(controller: passwordController,obscure: true, placeholder: 'Enter Your Password', validate: validatePassword,),
           ),
       ],
       );
@@ -132,7 +143,15 @@ class SignUp extends StatelessWidget {
 String? validateEmail(String? formEmail) {
   if (formEmail == null || formEmail.isEmpty) {
     return 'E-mail adress is required';
+  }else {
+    return null;
   }
 
+}
+
+String? validatePassword(String? formPassword) {
+  if (formPassword == null || formPassword.isEmpty) {
+    return "Password Is Required";
+  }
   return null;
 }
