@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gymigo/pages/login.dart';
 import 'package:gymigo/pages/home.dart';
 import 'package:gymigo/pages/day.dart';
+import 'package:gymigo/pages/welcome.dart';
 
 // Google Fonts
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
       ),
       initialRoute: '/login',
       routes: {
+        '/welcome': (context) => Welcome(),
         '/login': (context) => Login(),
         '/home': (context) => Home(),
         '/day': (context) => Day(),

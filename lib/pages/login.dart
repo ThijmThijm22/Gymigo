@@ -43,6 +43,13 @@ class _LoginState extends State<Login> {
 
             SignUp(emailController: emailController, passwordController: passwordController),
 
+            Text(
+                  errorMessage,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  ),
+
 
             Form(
               key: _key,
@@ -56,17 +63,12 @@ class _LoginState extends State<Login> {
                        FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
-                      ).catchError((error) {
-                        print(error);
-                      }).then((res) => Navigator.pushNamed(context, '/home'));
-                    } on PlatformException catch (err) {
-                      print(err);
-                    }on FirebaseAuthException catch (err) {
-                      print(err);
-                    }catch(err) {
-                      print(err);
+                      ).then((res) => Navigator.pushNamed(context, '/home'));
+                    } on FirebaseAuthException catch (err) {
+                      print(err.toString());
                     }
                     }
+                    setState(() { });
                   }
                 ),
             
@@ -78,17 +80,16 @@ class _LoginState extends State<Login> {
                       FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
-                      ).catchError((error) {
-                        print(error);
-                      }).then((res) => Navigator.pushNamed(context, '/home'));
+                      ).then((res) => Navigator.pushNamed(context, '/home'));
                       errorMessage = "";
                     } on FirebaseAuthException catch (err) {
-                      errorMessage = err.message!;
+                      print("firebaseauth: ${err.message}");
+                    } on PlatformException catch (err) {
+                      print("platforexeption: ${err}");
                     }
+                    setState(() { });
                   }
                 ),
-
-                Text(errorMessage),
                 ],
               ),
             ),
