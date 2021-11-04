@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'globals.dart';
 import 'package:http/http.dart';
@@ -6,47 +8,59 @@ import 'dart:convert';
 
 import '../widgets/round_button.dart';
 
+import '../services/get_quote.dart';
+
 class Welcome extends StatefulWidget {
-  const Welcome({ Key? key }) : super(key: key);
+  const Welcome({Key? key}) : super(key: key);
 
   @override
   _WelcomeState createState() => _WelcomeState();
 }
 
 class _WelcomeState extends State<Welcome> {
-
+  @override
+  Map quoteData = {};
   String quote = "";
+  String author = "";
 
-  GetQuote() async{
-    Response res = await get(Uri.parse('https://type.fit/api/quotes'));
-     Map data = jsonDecode(res.body);
-    quote = data['quote'].toString();
-    // print(quote);
+  setQuote() {
+    GetQuote()
+        .randomNum()
+        .then((res) => quoteData = res)
+        .then((res) => quote = quoteData["text"])
+        .then((res) => author = quoteData["author"]);
   }
 
+  quoteTimer() async {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      setState(() {
+        
+      });
+      timer.cancel();
+    });
+  }
 
-  @override
   Widget build(BuildContext context) {
-  GetQuote();
+    setQuote();
+    quoteTimer();
     return Scaffold(
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(height: 40,),
-
-            Center(
-              child: Text(
-                "Welcome To",
-                style: TextStyle(
-                  fontSize: 50,
-                  color: Globals.purple,
-                  fontWeight: FontWeight.bold,
-                ),
-                ),
+          SizedBox(
+            height: 40,
+          ),
+          Center(
+            child: Text(
+              "Welcome To",
+              style: TextStyle(
+                fontSize: 50,
+                color: Globals.purple,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-
+          ),
           SizedBox(height: 5),
-
           Center(
             child: Text(
               "Gymigo",
@@ -55,18 +69,27 @@ class _WelcomeState extends State<Welcome> {
                 color: Globals.purple,
                 fontWeight: FontWeight.bold,
               ),
-              ),
+            ),
           ),
-
           SizedBox(height: 100),
-
-          Text(quote),
-
+          Padding(
+            padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+            child: Text(
+              quote,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          Text(
+            "-${author}",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
           SizedBox(height: 200),
-
-          RoundButton(title:"Next",bgColor: Globals.purple,pressed: () {
-
-          })
+          RoundButton(title: "Next", bgColor: Globals.purple, pressed: () {})
         ],
       ),
     );
