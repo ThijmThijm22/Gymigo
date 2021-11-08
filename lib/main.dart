@@ -22,7 +22,7 @@ Future<void> main() async {
         textTheme: GoogleFonts.manropeTextTheme(),
         primaryColor: Colors.white,
       ),
-      initialRoute: '/login',
+      initialRoute: '/home',
       routes: {
         '/welcome': (context) => Welcome(),
         '/login': (context) => Login(),
