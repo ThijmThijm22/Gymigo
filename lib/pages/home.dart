@@ -5,6 +5,8 @@ import 'package:gymigo/widgets/dayCard.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,6 +16,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // initState() {
+  //   super.initState();
+  //   print(FirebaseFirestore.instance.collection('kmjqkfm'));
+  //   FirebaseFirestore.instance
+  //           .collection(FirebaseAuth.instance.currentUser!.uid)
+  //           .add({
+  //         'email': 'test@test.com',
+  //       }).catchError((err) {
+  //         print(err);
+  //       });
+
+  // }
+
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
