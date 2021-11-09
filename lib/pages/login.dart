@@ -10,18 +10,14 @@ import '../widgets/login_fields.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
-
 class Login extends StatefulWidget {
-  const Login({ Key? key }) : super(key: key);
-
+  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -32,77 +28,75 @@ class _LoginState extends State<Login> {
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      // Zorgt dat je geen overflow widget krijgt bij openen van keyboard.
-      resizeToAvoidBottomInset: false,
-
-      backgroundColor: Globals.background,
-      body: Center(
-        child:  Column(
-          children:  [
-            SizedBox(height: 120),
-
-            SignUp(emailController: emailController, passwordController: passwordController),
-
-            Text(
-                  errorMessage,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  ),
-
-
-            Form(
-              key: _key,
-              child: Column(
-                children: [
-                SizedBox(height: 50),
-                RoundButton(bgColor: Globals.purple, title: 'Sign Up', 
-                  pressed: () {
-                    if(_key.currentState!.validate()) {
-                      try {
-                       FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      ).then((res) => Navigator.pushNamed(context, '/home'));
-                    } on FirebaseAuthException catch (err) {
-                      print(err.toString());
-                    }
-                    }
-                    setState(() { });
-                  }
+        // Zorgt dat je geen overflow widget krijgt bij openen van keyboard.
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Globals.background,
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 120),
+              SignUp(
+                  emailController: emailController,
+                  passwordController: passwordController),
+              Text(
+                errorMessage,
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-            
-                SizedBox(height: 30),
-            
-                RoundButton(bgColor: Globals.background, title: 'Sign In',
-                  pressed: () {
-                    try {
-                      FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      ).then((res) => Navigator.pushNamed(context, '/home'));
-                      errorMessage = "";
-                    } on FirebaseAuthException catch (err) {
-                      print("firebaseauth: ${err.message}");
-                    } on PlatformException catch (err) {
-                      print("platforexeption: ${err}");
-                    }
-                    setState(() { });
-                  }
-                ),
-                ],
               ),
-            ),
-            Padding(
-             padding: EdgeInsets.only(
-             bottom: MediaQuery.of(context).viewInsets.bottom)),
-          ],
-
-          
-        ),
-      )
-    
-    );
+              Form(
+                key: _key,
+                child: Column(
+                  children: [
+                    SizedBox(height: 50),
+                    RoundButton(
+                        bgColor: Globals.purple,
+                        title: 'Sign Up',
+                        pressed: () {
+                          if (_key.currentState!.validate()) {
+                            try {
+                              FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ).then((res) => Navigator.pushNamed(context, '/home'));
+                            } on FirebaseAuthException catch (err) {
+                              print(err.toString());
+                            }
+                          }
+                          setState(() {});
+                        }),
+                    SizedBox(height: 30),
+                    RoundButton(
+                        bgColor: Globals.background,
+                        title: 'Sign In',
+                        pressed: () {
+                          try {
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                )
+                                .then((res) =>
+                                    Navigator.pushNamed(context, '/home'));
+                            // .then((res) => FirebaseFirestore.instance())
+                            errorMessage = "";
+                          } on FirebaseAuthException catch (err) {
+                            print("firebaseauth: ${err.message}");
+                          } on PlatformException catch (err) {
+                            print("platforexeption: ${err}");
+                          }
+                          setState(() {});
+                        }),
+                  ],
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom)),
+            ],
+          ),
+        ));
   }
 }
 
@@ -124,19 +118,26 @@ class SignUp extends StatelessWidget {
           bottom: 0,
           left: 50,
           right: 50,
-          child: 
-            NewInput(controller: emailController, placeholder: 'Enter Your Email', validate: validateEmail,),
+          child: NewInput(
+            controller: emailController,
+            placeholder: 'Enter Your Email',
+            validate: validateEmail,
           ),
+        ),
         Positioned(
           top: 200,
           bottom: 0,
           left: 50,
           right: 50,
-          child: 
-            NewInput(controller: passwordController,obscure: true, placeholder: 'Enter Your Password', validate: validatePassword,),
+          child: NewInput(
+            controller: passwordController,
+            obscure: true,
+            placeholder: 'Enter Your Password',
+            validate: validatePassword,
           ),
+        ),
       ],
-      );
+    );
   }
 }
 
@@ -144,10 +145,9 @@ class SignUp extends StatelessWidget {
 String? validateEmail(String? formEmail) {
   if (formEmail == null || formEmail.isEmpty) {
     return 'E-mail adress is required';
-  }else {
+  } else {
     return null;
   }
-
 }
 
 String? validatePassword(String? formPassword) {
