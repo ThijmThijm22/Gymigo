@@ -23,7 +23,8 @@ class _WelcomeState extends State<Welcome> {
   String quote = "";
   String author = "";
 
-  setQuote() {
+  // Geeft de quote en author variable een waarde
+  Future setQuote() async {
     GetQuote()
         .randomNum()
         .then((res) => quoteData = res)
@@ -31,18 +32,24 @@ class _WelcomeState extends State<Welcome> {
         .then((res) => author = quoteData["author"]);
   }
 
+  // Timer verandert om de zoveel seconden de quote
   quoteTimer() async {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      setState(() {
-        
-      });
-      timer.cancel();
+    Timer.periodic(Duration(seconds: 10), (timer) {
+      setQuote();
+      setState(() {});
+    });
+  }
+
+  // Deze functie runt wanner de app gebuild is
+  void initState() {
+    super.initState();
+    setQuote().then((res) {
+      setState(() {});
+      quoteTimer();
     });
   }
 
   Widget build(BuildContext context) {
-    setQuote();
-    quoteTimer();
     return Scaffold(
       backgroundColor: Globals.background,
       body: Column(
@@ -72,24 +79,37 @@ class _WelcomeState extends State<Welcome> {
             ),
           ),
           SizedBox(height: 100),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
-            child: Text(
-              quote,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
+          Container(
+            height: 300,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+                  child: Center(
+                    child: Text(
+                      quote == "" ? "" : "\"${quote}\"",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  author == "" ? "" : "- ${author}",
+                  style: TextStyle(
+                    color: Globals.purple,
+                  ),
+                ),
+              ],
             ),
           ),
-          Text(
-            "-${author}",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 200),
-          RoundButton(title: "Next", bgColor: Globals.purple, pressed: () {})
+          RoundButton(
+              title: "Next",
+              bgColor: Globals.purple,
+              pressed: () {
+                Navigator.pushNamed(context, '/login');
+              })
         ],
       ),
     );
