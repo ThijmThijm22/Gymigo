@@ -17,14 +17,17 @@ class _HomeState extends State<Home> {
   User? user = FirebaseAuth.instance.currentUser;
 
   // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
+  Map userData = {};
   makeCollection() {
     var inst = FirebaseFirestore.instance;
     var collectie = inst.collection(user!.uid);
+
 
     collectie.get().then((res) {
       if (res.docs.toString() == '[]') {
         print('new collection');
         inst.collection(user!.uid).add({
+          'email': user!.email,
           'Monday': 'Push',
           'Tuesday': 'Pull',
           'Wednesday': 'Legs',
@@ -38,7 +41,9 @@ class _HomeState extends State<Home> {
 
         collectie.get().then((res) {
           res.docs.forEach((el) {
-            print(el.data());
+            userData = el.data();
+            print(userData);
+            print(userData['Monday']);
           });
         });
       }
@@ -96,13 +101,15 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          DayCard(),
-          DayCard(),
-          DayCard(),
-          DayCard(),
-          DayCard(),
-          DayCard(),
-          DayCard(),
+
+          
+          DayCard(day: 'Monday', topic: userData['Monday'] == null ? "" : userData['Monday']),
+          DayCard(day: 'Tuesday', topic: userData['Tuesday'] == null ? "" : userData['Tuesday']),
+          DayCard(day: 'Wednesday', topic: userData['Wednesday'] == null ? "" : userData['Wednesday']),
+          DayCard(day: 'Thursday', topic: userData['Thursday'] == null ? "" : userData['Thursday']),
+          DayCard(day: 'Friday', topic: userData['Friday'] == null ? "" : userData['Friday']),
+          DayCard(day: 'Saturday', topic: userData['Saturday'] == null ? "" : userData['Saturday']),
+          DayCard(day: 'Sunday', topic: userData['Sunday'] == null ? "" : userData['Sunday']),
 
           // checken voor enumeraties in Flutter: enum maken met dagen van
           // de week en dan elke card een vaste waarden geven aan de hand
