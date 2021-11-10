@@ -25,7 +25,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
         // Zorgt dat je geen overflow widget krijgt bij openen van keyboard.

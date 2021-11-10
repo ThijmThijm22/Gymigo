@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
 
 class DayCard extends StatefulWidget {
-  final String typeWorkout;
+  final String day;
+  final String topic;
 
-  const DayCard({Key? key, this.typeWorkout = ""}) : super(key: key);
+  const DayCard({Key? key, this.day = "{Day of the week}", this.topic = "Topic for the day"}) : super(key: key);
 
   @override
   _DayCardState createState() => _DayCardState();
@@ -30,7 +31,7 @@ class _DayCardState extends State<DayCard> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 6),
               child: Text(
-                "{Day of the week}",
+                widget.day,
                 style: TextStyle(
                     color: Globals.purple,
                     fontSize: 15,
@@ -40,7 +41,7 @@ class _DayCardState extends State<DayCard> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
               child: Text(
-                'Topic for the day',
+                widget.topic,
                 style: TextStyle(
                     color: Globals.textWhite,
                     fontSize: 22,

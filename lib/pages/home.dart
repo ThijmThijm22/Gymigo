@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gymigo/pages/day.dart';
 import 'package:gymigo/pages/globals.dart';
 import 'package:gymigo/widgets/dayCard.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
@@ -16,21 +14,41 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // initState() {
-  //   super.initState();
-  //   print(FirebaseFirestore.instance.collection('kmjqkfm'));
-  //   FirebaseFirestore.instance
-  //           .collection(FirebaseAuth.instance.currentUser!.uid)
-  //           .add({
-  //         'email': 'test@test.com',
-  //       }).catchError((err) {
-  //         print(err);
-  //       });
+  User? user = FirebaseAuth.instance.currentUser;
 
-  // }
+  // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
+  makeCollection() {
+    var inst = FirebaseFirestore.instance;
+    var collectie = inst.collection(user!.uid);
+
+    collectie.get().then((res) {
+      if (res.docs.toString() == '[]') {
+        print('new collection');
+        inst.collection(user!.uid).add({
+          'Monday': 'Push',
+          'Tuesday': 'Pull',
+          'Wednesday': 'Legs',
+          'Thursday': 'Rest Day',
+          'Friday': 'Push',
+          'Saturday': 'Pull',
+          'Sunday': 'Legs',
+        });
+      } else {
+        print('getting collection');
+
+        collectie.get().then((res) {
+          res.docs.forEach((el) {
+            print(el.data());
+          });
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    makeCollection();
+
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(

@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'globals.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-// import 'dart:async';
 
 import '../widgets/round_button.dart';
 
@@ -87,7 +84,7 @@ class _WelcomeState extends State<Welcome> {
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: Center(
                     child: Text(
-                      quote == "" ? "" : "\"${quote}\"",
+                      quote == "" ? "When live gives pain, GO TO THE GYM" : "\"${quote}\"",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -96,7 +93,7 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
                 Text(
-                  author == "" ? "" : "- ${author}",
+                  author == "" ? "BIG MAN" : "- ${author}",
                   style: TextStyle(
                     color: Globals.purple,
                   ),
