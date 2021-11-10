@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'globals.dart';
 
 class Day extends StatefulWidget {

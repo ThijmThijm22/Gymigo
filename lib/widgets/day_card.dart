@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
 
@@ -30,6 +28,7 @@ class _DayCardState extends State<DayCard> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 6),
               child: Text(
+                // UPGRADE: zou via (enumeratie??) automatisch juiste dag moeten worden
                 "{Day of the week}",
                 style: TextStyle(
                     color: Globals.purple,
@@ -40,7 +39,7 @@ class _DayCardState extends State<DayCard> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
               child: Text(
-                'Topic for the day',
+                "Topic for the day",
                 style: TextStyle(
                     color: Globals.textWhite,
                     fontSize: 22,

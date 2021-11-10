@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gymigo/pages/day.dart';
 import 'package:gymigo/pages/globals.dart';
-import 'package:gymigo/widgets/dayCard.dart';
+import 'package:gymigo/widgets/day_card.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,7 +63,9 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          DayCard(),
+          DayCard(
+            typeWorkout: "Chest",
+          ),
           DayCard(),
           DayCard(),
           DayCard(),
