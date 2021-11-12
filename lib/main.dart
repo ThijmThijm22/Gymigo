@@ -24,9 +24,9 @@ Future<void> main() async {
       ),
       initialRoute: '/home',
       routes: {
-        '/welcome': (context) => Welcome(),
-        '/login': (context) => Login(),
-        '/home': (context) => Home(),
-        '/day': (context) => Day(),
+        '/welcome': (context) => const Welcome(),
+        '/login': (context) => const Login(),
+        '/home': (context) => const Home(),
+        '/day': (context) => const Day(),
       }));
 }

@@ -33,13 +33,13 @@ class _LoginState extends State<Login> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 120),
+              const SizedBox(height: 120),
               SignUp(
                   emailController: emailController,
                   passwordController: passwordController),
               Text(
                 errorMessage,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),
@@ -47,7 +47,7 @@ class _LoginState extends State<Login> {
                 key: _key,
                 child: Column(
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     RoundButton(
                         bgColor: Globals.purple,
                         title: 'Sign Up',
@@ -65,7 +65,7 @@ class _LoginState extends State<Login> {
                           }
                           setState(() {});
                         }),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     RoundButton(
                         bgColor: Globals.background,
                         title: 'Sign In',
@@ -139,6 +139,9 @@ class SignUp extends StatelessWidget {
     );
   }
 }
+
+
+// -- In progress --
 
 // Form Validation
 String? validateEmail(String? formEmail) {

@@ -4,6 +4,7 @@ import 'globals.dart';
 
 class Day extends StatefulWidget {
   const Day({Key? key}) : super(key: key);
+  
 
   @override
   _DayState createState() => _DayState();
@@ -16,7 +17,7 @@ class _DayState extends State<Day> {
       backgroundColor: Globals.background,
       body: Wrap(children: <Widget>[
         Container(
-          margin: EdgeInsets.only(left: 23),
+          margin: const EdgeInsets.only(left: 23),
           child: Align(
             alignment: Alignment.topLeft,
             child: TextField(
@@ -38,9 +39,9 @@ class _DayState extends State<Day> {
           color: Globals.boxGrey,
           height: 525,
           width: 400,
-          margin: EdgeInsets.only(left: 20, right: 20),
+          margin: const EdgeInsets.only(left: 20, right: 20),
           child: Container(
-            margin: EdgeInsets.only(left: 15),
+            margin: const EdgeInsets.only(left: 15),
             child: Align(
               alignment: Alignment.topLeft,
               child: TextField(

@@ -22,7 +22,6 @@ class _HomeState extends State<Home> {
     var inst = FirebaseFirestore.instance;
     var collectie = inst.collection(user!.uid);
 
-
     collectie.get().then((res) {
       if (res.docs.toString() == '[]') {
         print('new collection');
@@ -44,16 +43,20 @@ class _HomeState extends State<Home> {
             userData = el.data();
             print(userData);
             print(userData['Monday']);
+            setState(() {});
           });
         });
       }
     });
   }
 
+  void initState() {
+    super.initState();
+    makeCollection();
+  }
+
   @override
   Widget build(BuildContext context) {
-    makeCollection();
-
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
@@ -72,7 +75,7 @@ class _HomeState extends State<Home> {
                 )),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15, top: 20),
+            margin: const EdgeInsets.only(left: 15, top: 20),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -88,7 +91,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15, top: 8),
+            margin: const EdgeInsets.only(left: 15, top: 8),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -102,14 +105,31 @@ class _HomeState extends State<Home> {
             ),
           ),
 
-          
-          DayCard(day: 'Monday', topic: userData['Monday'] == null ? "" : userData['Monday']),
-          DayCard(day: 'Tuesday', topic: userData['Tuesday'] == null ? "" : userData['Tuesday']),
-          DayCard(day: 'Wednesday', topic: userData['Wednesday'] == null ? "" : userData['Wednesday']),
-          DayCard(day: 'Thursday', topic: userData['Thursday'] == null ? "" : userData['Thursday']),
-          DayCard(day: 'Friday', topic: userData['Friday'] == null ? "" : userData['Friday']),
-          DayCard(day: 'Saturday', topic: userData['Saturday'] == null ? "" : userData['Saturday']),
-          DayCard(day: 'Sunday', topic: userData['Sunday'] == null ? "" : userData['Sunday']),
+          // Als je niks ziet bij de daycards dan kan dat zijn omdat de gebruiker niet ingelogd is
+          // Je kan inloggen met test1@test.com, password: 123456
+          // Als je verkeerd wachtwoord ingeeft dan blokkeer de app nog momenteel dit komt door een fout bij flutter zelf
+          DayCard(
+              day: 'Monday',
+              topic: userData['Monday'] == null ? "Topic for the day" : userData['Monday']),
+          DayCard(
+              day: 'Tuesday',
+              topic: userData['Tuesday'] == null ? "Topic for the day" : userData['Tuesday']),
+          DayCard(
+              day: 'Wednesday',
+              topic:
+                  userData['Wednesday'] == null ? "Topic for the day" : userData['Wednesday']),
+          DayCard(
+              day: 'Thursday',
+              topic: userData['Thursday'] == null ? "Topic for the day" : userData['Thursday']),
+          DayCard(
+              day: 'Friday',
+              topic: userData['Friday'] == null ? "Topic for the day" : userData['Friday']),
+          DayCard(
+              day: 'Saturday',
+              topic: userData['Saturday'] == null ? "Topic for the day" : userData['Saturday']),
+          DayCard(
+              day: 'Sunday',
+              topic: userData['Sunday'] == null ? "Topic for the day" : userData['Sunday']),
 
           // checken voor enumeraties in Flutter: enum maken met dagen van
           // de week en dan elke card een vaste waarden geven aan de hand
