@@ -54,27 +54,8 @@ class _WelcomeState extends State<Welcome> {
           SizedBox(
             height: 40,
           ),
-          Center(
-            child: Text(
-              "Welcome To",
-              style: TextStyle(
-                fontSize: 50,
-                color: Globals.purple,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(height: 5),
-          Center(
-            child: Text(
-              "Gymigo",
-              style: TextStyle(
-                fontSize: 50,
-                color: Globals.purple,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+
+          // logo invoegen
           SizedBox(height: 100),
           Container(
             height: 300,
@@ -84,7 +65,9 @@ class _WelcomeState extends State<Welcome> {
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: Center(
                     child: Text(
-                      quote == "" ? "When live gives pain, GO TO THE GYM" : "\"${quote}\"",
+                      quote == ""
+                          ? "When life gives pain, GO TO THE GYM"
+                          : "\"${quote}\"",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
