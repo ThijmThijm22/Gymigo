@@ -23,7 +23,7 @@ Future<void> main() async {
         textTheme: GoogleFonts.manropeTextTheme(),
         primaryColor: Colors.white,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/home',
       routes: {
         '/splash': (context) => const Splashh(),
         '/welcome': (context) => const Welcome(),

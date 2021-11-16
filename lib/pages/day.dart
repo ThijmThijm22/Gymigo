@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
 
 class Day extends StatefulWidget {
   const Day({Key? key}) : super(key: key);
-  
 
   @override
   _DayState createState() => _DayState();
@@ -44,24 +44,31 @@ class _DayState extends State<Day> {
             margin: const EdgeInsets.only(left: 15),
             child: Align(
               alignment: Alignment.topLeft,
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 5,
-                style: TextStyle(
-                    color: Globals.textGrey,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText:
-                      "Write here your notes for today's workout session ...",
-                  hintStyle: TextStyle(fontSize: 15, color: Globals.textWhite),
-                ),
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: 5,
+                    style: TextStyle(
+                        color: Globals.textGrey,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText:
+                          "Write here your notes for today's workout session ...",
+                      hintStyle:
+                          TextStyle(fontSize: 15, color: Globals.textWhite),
+                    ),
+                  ),
+                  Workout(),
+                  Workout()
+                ],
               ),
             ),
           ),
-        )
+        ),
       ]),
       appBar: AppBar(
         title: Text(

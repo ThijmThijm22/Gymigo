@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
-import 'package:gymigo/widgets/dayCard.dart';
+import 'package:gymigo/widgets/day_card.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
@@ -110,26 +110,39 @@ class _HomeState extends State<Home> {
           // Als je verkeerd wachtwoord ingeeft dan blokkeer de app nog momenteel dit komt door een fout bij flutter zelf
           DayCard(
               day: 'Monday',
-              topic: userData['Monday'] == null ? "Topic for the day" : userData['Monday']),
+              topic: userData['Monday'] == null
+                  ? "Topic for the day"
+                  : userData['Monday']),
           DayCard(
               day: 'Tuesday',
-              topic: userData['Tuesday'] == null ? "Topic for the day" : userData['Tuesday']),
+              topic: userData['Tuesday'] == null
+                  ? "Topic for the day"
+                  : userData['Tuesday']),
           DayCard(
               day: 'Wednesday',
-              topic:
-                  userData['Wednesday'] == null ? "Topic for the day" : userData['Wednesday']),
+              topic: userData['Wednesday'] == null
+                  ? "Topic for the day"
+                  : userData['Wednesday']),
           DayCard(
               day: 'Thursday',
-              topic: userData['Thursday'] == null ? "Topic for the day" : userData['Thursday']),
+              topic: userData['Thursday'] == null
+                  ? "Topic for the day"
+                  : userData['Thursday']),
           DayCard(
               day: 'Friday',
-              topic: userData['Friday'] == null ? "Topic for the day" : userData['Friday']),
+              topic: userData['Friday'] == null
+                  ? "Topic for the day"
+                  : userData['Friday']),
           DayCard(
               day: 'Saturday',
-              topic: userData['Saturday'] == null ? "Topic for the day" : userData['Saturday']),
+              topic: userData['Saturday'] == null
+                  ? "Topic for the day"
+                  : userData['Saturday']),
           DayCard(
               day: 'Sunday',
-              topic: userData['Sunday'] == null ? "Topic for the day" : userData['Sunday']),
+              topic: userData['Sunday'] == null
+                  ? "Topic for the day"
+                  : userData['Sunday']),
 
           // checken voor enumeraties in Flutter: enum maken met dagen van
           // de week en dan elke card een vaste waarden geven aan de hand
