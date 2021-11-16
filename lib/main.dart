@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Import pages
+import 'package:gymigo/pages/splash.dart';
 import 'package:gymigo/pages/login.dart';
 import 'package:gymigo/pages/home.dart';
 import 'package:gymigo/pages/day.dart';
@@ -22,8 +23,9 @@ Future<void> main() async {
         textTheme: GoogleFonts.manropeTextTheme(),
         primaryColor: Colors.white,
       ),
-      initialRoute: '/home',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => const Splashh(),
         '/welcome': (context) => const Welcome(),
         '/login': (context) => const Login(),
         '/home': (context) => const Home(),
