@@ -84,8 +84,8 @@ class _WelcomeState extends State<Welcome> {
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: Center(
                     child: Text(
-                      quote == "" ? "When live gives pain, GO TO THE GYM" : "\"${quote}\"",
-                      style: TextStyle(
+                      quote == "" ? "Light Weight Baby" : "\"${quote}\"",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
@@ -93,7 +93,7 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
                 Text(
-                  author == "" ? "BIG MAN" : "- ${author}",
+                  author == "" ? "Ronnie Coleman" : "- ${author}",
                   style: TextStyle(
                     color: Globals.purple,
                   ),

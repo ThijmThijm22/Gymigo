@@ -25,7 +25,7 @@ Future<void> main() async {
       ),
       initialRoute: '/splash',
       routes: {
-        '/splash': (context) => const Splashh(),
+        '/splash': (context) => Splash(routeTo: '/welcome',),
         '/welcome': (context) => const Welcome(),
         '/login': (context) => const Login(),
         '/home': (context) => const Home(),
