@@ -5,51 +5,40 @@ import 'globals.dart';
 import 'dart:async';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
-class Splashh extends StatefulWidget {
-  const Splashh({Key? key}) : super(key: key);
+class Splash extends StatefulWidget {
+  late String routeTo;
+
+  Splash({required this.routeTo});
+
 
   @override
-  State<Splashh> createState() => _SplashhState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplashhState extends State<Splashh> {
+class _SplashState extends State<Splash> {
   @override
-    void initState() {
+  void initState() {
     super.initState();
 
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, '/welcome');
     });
   }
-  Widget build(BuildContext context) {
 
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Globals.background,
-      body:Column(
-        children:  [
-
-          SafeArea(child: SizedBox(height: 30,)),
-
-            const Center(
-              child: Text(
-              'Gymigo',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2,
-              ),
-            ),
-
+      body: Column(
+        children: [
+          Center(
+            child: Image.asset('assets/gymigo_logo.png'),
           ),
-
-          SizedBox(height: 300),
-
+          const SizedBox(height: 100),
           SpinKitRing(
             color: Globals.purple,
             size: 80,
-
           )
         ],
       ),
