@@ -51,32 +51,33 @@ class _WelcomeState extends State<Welcome> {
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(
-            height: 40,
+          SizedBox(height: 100),
+          Image.asset(
+            'assets/gymigo_logo_final.png',
+            width: 300,
           ),
-
-          // logo invoegen
           SizedBox(height: 100),
           Container(
-            height: 300,
+            height: 200,
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: Center(
                     child: Text(
-
-                      quote == "" ? "Light Weight Baby" : "\"${quote}\"",
-                      style: const TextStyle(
-
+                      quote == ""
+                          ? "When life gives pain, GO TO THE GYM"
+                          : "\"${quote}\"",
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
                     ),
                   ),
                 ),
+                SizedBox(height: 10),
                 Text(
-                  author == "" ? "Ronnie Coleman" : "- ${author}",
+                  author == "" ? "BIG MAN" : "- ${author}",
                   style: TextStyle(
                     color: Globals.purple,
                   ),
