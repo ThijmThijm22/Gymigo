@@ -5,13 +5,11 @@ import 'globals.dart';
 import 'dart:async';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
 
 class Splash extends StatefulWidget {
   late String routeTo;
 
   Splash({required this.routeTo});
-
 
   @override
   State<Splash> createState() => _SplashState();
@@ -22,7 +20,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/welcome');
     });
   }
@@ -32,10 +30,11 @@ class _SplashState extends State<Splash> {
       backgroundColor: Globals.background,
       body: Column(
         children: [
+          SizedBox(height: 100),
           Center(
-            child: Image.asset('assets/gymigo_logo.png'),
+            child: Image.asset('assets/gymigo_logo_final.png', width: 300),
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 250),
           SpinKitRing(
             color: Globals.purple,
             size: 80,

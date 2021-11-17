@@ -23,9 +23,11 @@ Future<void> main() async {
         textTheme: GoogleFonts.manropeTextTheme(),
         primaryColor: Colors.white,
       ),
-      initialRoute: '/home',
+      initialRoute: '/splash',
       routes: {
-        '/splash': (context) => Splash(routeTo: '/welcome',),
+        '/splash': (context) => Splash(
+              routeTo: '/welcome',
+            ),
         '/welcome': (context) => const Welcome(),
         '/login': (context) => const Login(),
         '/home': (context) => const Home(),
