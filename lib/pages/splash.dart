@@ -5,7 +5,6 @@ import 'globals.dart';
 import 'dart:async';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
 
 class Splash extends StatefulWidget {
   late String routeTo;

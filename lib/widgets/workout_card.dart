@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
 
+// Widgets
+import '../widgets/login_fields.dart';
+
 class Workout extends StatefulWidget {
   const Workout({Key? key}) : super(key: key);
 
@@ -9,12 +12,16 @@ class Workout extends StatefulWidget {
 }
 
 class _WorkoutState extends State<Workout> {
+
+  TextEditingController testcontroller = TextEditingController();
+  String? validatortest() {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.all(2),
         width: 360,
-        height: 60,
+        // height: 60,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,6 +35,9 @@ class _WorkoutState extends State<Workout> {
                     fontWeight: FontWeight.bold),
               ),
             ),
+
+            NewInput(validate: validatortest(), controller: testcontroller, bgColor: Globals.boxGrey)
+            
           ],
         ));
   }
