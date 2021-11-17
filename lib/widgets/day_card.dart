@@ -20,7 +20,7 @@ class _DayCardState extends State<DayCard> {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         width: 360,
         height: 120,
         decoration: BoxDecoration(
