@@ -5,14 +5,18 @@ import 'package:gymigo/pages/globals.dart';
 import '../widgets/login_fields.dart';
 
 class Workout extends StatefulWidget {
-  const Workout({Key? key}) : super(key: key);
+  late List list;
+  late int itemNum;
+  late Function callback;
+
+  Workout({Key? key, required this.itemNum, required this.list, required this.callback})
+      : super(key: key);
 
   @override
   _WorkoutState createState() => _WorkoutState();
 }
 
 class _WorkoutState extends State<Workout> {
-
   TextEditingController testcontroller = TextEditingController();
   String? validatortest() {}
 
@@ -35,9 +39,22 @@ class _WorkoutState extends State<Workout> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-
-            NewInput(validate: validatortest(), controller: testcontroller, bgColor: Globals.boxGrey)
-            
+            NewInput(
+                validate: validatortest(),
+                controller: testcontroller,
+                bgColor: Globals.boxGrey,
+                color: Colors.white,
+                placeholder: 'Enter exercise here'),
+            ElevatedButton(
+              onPressed: () {
+                print(widget.list);
+                (widget.list)
+                    .removeWhere((item) => item.itemNum == widget.itemNum);
+                widget.callback('random text');
+                // setState(() {});
+              },
+              child: const Icon(Icons.delete),
+            )
           ],
         ));
   }

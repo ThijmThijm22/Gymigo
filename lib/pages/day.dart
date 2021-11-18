@@ -11,7 +11,14 @@ class Day extends StatefulWidget {
 }
 
 class _DayState extends State<Day> {
+  int keys = 0;
   List<Widget> workouts = [];
+
+  callback(workouts) {
+    setState(() {
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +71,6 @@ class _DayState extends State<Day> {
                             TextStyle(fontSize: 15, color: Globals.textWhite),
                       ),
                     ),
-
                     Column(children: workouts),
                   ],
                 ),
@@ -72,7 +78,7 @@ class _DayState extends State<Day> {
             ),
           ),
         ]),
-        appBar: AppBar( 
+        appBar: AppBar(
           title: Text(
             // UPGRADE: de datum zou automatisch moeten veranderen naar de dag zelf
             'Maandag, 25 oktober 2021',
@@ -84,10 +90,9 @@ class _DayState extends State<Day> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            workouts.add(Workout());
-            setState(() {
-              
-            });
+            keys++;
+            workouts.add(Workout(key: UniqueKey(),itemNum: keys, list: workouts, callback: callback, ));
+            setState(() {});
           },
           backgroundColor: Globals.purple,
           child: const Icon(Icons.add),

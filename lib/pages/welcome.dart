@@ -66,7 +66,7 @@ class _WelcomeState extends State<Welcome> {
                   child: Center(
                     child: Text(
                       quote == ""
-                          ? "When life gives pain, GO TO THE GYM"
+                          ? "Light Weight BABY!"
                           : "\"${quote}\"",
                       style: TextStyle(
                         color: Colors.white,
@@ -77,7 +77,7 @@ class _WelcomeState extends State<Welcome> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  author == "" ? "BIG MAN" : "- ${author}",
+                  author == "" ? "- Ronnie Coleman" : "- ${author}",
                   style: TextStyle(
                     color: Globals.purple,
                   ),
