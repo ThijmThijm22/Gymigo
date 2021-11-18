@@ -24,6 +24,9 @@ class NewInput extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           hintText: placeholder,
+          hintStyle: TextStyle(
+            color: color,
+          ),
           filled: true,
           fillColor: bgColor,
           focusedBorder: InputBorder.none,
@@ -34,6 +37,11 @@ class NewInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           )
         ),
+
+        style: TextStyle( 
+          color: color,
+        ),
+        
         controller: controller,
         validator: validate,
         obscureText: obscure,
