@@ -30,13 +30,30 @@ class _WorkoutState extends State<Workout> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 6),
-              child: Text(
-                'Exercise',
-                style: TextStyle(
-                    color: Globals.purple,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              child: Row(
+                children: [
+                  Text(
+                    'Exercise',
+                    style: TextStyle(
+                        color: Globals.purple,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+
+                  IconButton(
+                    onPressed: () {
+                      (widget.list)
+                          .removeWhere((item) => item.itemNum == widget.itemNum);
+                      widget.callback('random text');
+                      // setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.delete,
+                      color: Globals.purple,
+                      ),
+                  )
+                ],
               ),
             ),
             NewInput(
@@ -45,16 +62,6 @@ class _WorkoutState extends State<Workout> {
                 bgColor: Globals.boxGrey,
                 color: Colors.white,
                 placeholder: 'Enter exercise here'),
-            ElevatedButton(
-              onPressed: () {
-                print(widget.list);
-                (widget.list)
-                    .removeWhere((item) => item.itemNum == widget.itemNum);
-                widget.callback('random text');
-                // setState(() {});
-              },
-              child: const Icon(Icons.delete),
-            )
           ],
         ));
   }
