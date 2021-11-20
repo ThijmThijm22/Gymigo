@@ -7,7 +7,11 @@ class DayCard extends StatefulWidget {
   final String day;
   final String topic;
 
-  const DayCard({Key? key, this.day = "{Day of the week}", this.topic = "Topic for the day"}) : super(key: key);
+  const DayCard(
+      {Key? key,
+      this.day = "{Day of the week}",
+      this.topic = "Topic for the day"})
+      : super(key: key);
 
   @override
   _DayCardState createState() => _DayCardState();
@@ -39,13 +43,28 @@ class _DayCardState extends State<DayCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-              child: Text(
-                widget.topic,
-                style: TextStyle(
-                    color: Globals.textWhite,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: _checkbox,
+                    onChanged: (value) {
+                      setState(() {
+                        _checkbox = true;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                    child: Text(
+                      widget.topic,
+                      style: TextStyle(
+                          color: Globals.textWhite,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
