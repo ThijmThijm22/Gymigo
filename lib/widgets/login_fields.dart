@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NewInput extends StatelessWidget {
 
   late String placeholder;
-  final controller;
+  final dynamic controller;
   late Color bgColor;
   late Color color;
   late bool obscure;
@@ -47,9 +47,6 @@ class NewInput extends StatelessWidget {
         validator: validate,
         obscureText: obscure,
 
-        onEditingComplete: () {
-
-        },
       ),
     );
   }

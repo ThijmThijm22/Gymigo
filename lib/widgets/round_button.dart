@@ -21,7 +21,7 @@ class RoundButton extends StatelessWidget {
                 },
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     letterSpacing: 2,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

@@ -23,7 +23,7 @@ class _WorkoutState extends State<Workout> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(2),
+        margin: const EdgeInsets.all(2),
         width: 360,
         // height: 60,
         child: Column(

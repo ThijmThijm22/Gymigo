@@ -31,7 +31,7 @@ class _WelcomeState extends State<Welcome> {
 
   // Timer verandert om de zoveel seconden de quote
   quoteTimer() async {
-    Timer.periodic(Duration(seconds: 10), (timer) {
+    Timer.periodic(const Duration(seconds: 10), (timer) {
       setQuote();
       setState(() {});
     });
@@ -51,12 +51,12 @@ class _WelcomeState extends State<Welcome> {
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Image.asset(
             'assets/gymigo_logo_final.png',
             width: 300,
           ),
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Container(
             height: 200,
             child: Column(
@@ -67,17 +67,17 @@ class _WelcomeState extends State<Welcome> {
                     child: Text(
                       quote == ""
                           ? "Light Weight BABY!"
-                          : "\"${quote}\"",
-                      style: TextStyle(
+                          : "\"$quote\"",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  author == "" ? "- Ronnie Coleman" : "- ${author}",
+                  author == "" ? "- Ronnie Coleman" : "- $author",
                   style: TextStyle(
                     color: Globals.purple,
                   ),

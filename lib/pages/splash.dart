@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Center(
             child: Image.asset('assets/gymigo_logo_final.png', width: 300),
           ),
