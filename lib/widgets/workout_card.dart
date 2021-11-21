@@ -9,7 +9,11 @@ class Workout extends StatefulWidget {
   late int itemNum;
   late Function callback;
 
-  Workout({Key? key, required this.itemNum, required this.list, required this.callback})
+  Workout(
+      {Key? key,
+      required this.itemNum,
+      required this.list,
+      required this.callback})
       : super(key: key);
 
   @override
@@ -40,18 +44,17 @@ class _WorkoutState extends State<Workout> {
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                   ),
-
                   IconButton(
                     onPressed: () {
-                      (widget.list)
-                          .removeWhere((item) => item.itemNum == widget.itemNum);
+                      (widget.list).removeWhere(
+                          (item) => item.itemNum == widget.itemNum);
                       widget.callback('random text');
                       // setState(() {});
                     },
                     icon: Icon(
                       Icons.delete,
                       color: Globals.purple,
-                      ),
+                    ),
                   )
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gymigo/pages/home.dart';
 import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
@@ -15,9 +16,7 @@ class _DayState extends State<Day> {
   List<Widget> workouts = [];
 
   callback(workouts) {
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -87,11 +86,24 @@ class _DayState extends State<Day> {
           centerTitle: true,
           backgroundColor: Globals.background,
           elevation: 0,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                );
+              },
+              icon: Icon(Icons.arrow_back)),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             keys++;
-            workouts.add(Workout(key: UniqueKey(),itemNum: keys, list: workouts, callback: callback, ));
+            workouts.add(Workout(
+              key: UniqueKey(),
+              itemNum: keys,
+              list: workouts,
+              callback: callback,
+            ));
             setState(() {});
           },
           backgroundColor: Globals.purple,

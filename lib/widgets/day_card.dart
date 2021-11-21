@@ -18,7 +18,7 @@ class DayCard extends StatefulWidget {
 }
 
 class _DayCardState extends State<DayCard> {
-  get title => null;
+  bool _checkbox = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +46,21 @@ class _DayCardState extends State<DayCard> {
               padding: const EdgeInsets.all(8),
               child: Row(
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = true;
-                      });
-                    },
+                  Theme(
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = true;
+                        });
+                      },
+                      checkColor: Globals.boxGrey,
+                      activeColor: Globals.purple,
+                    ),
+                    data: ThemeData(
+                      primarySwatch: Colors.blue,
+                      unselectedWidgetColor: Globals.textWhite,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
