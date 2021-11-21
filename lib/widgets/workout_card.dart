@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+
+// Pages
 import 'package:gymigo/pages/globals.dart';
 
 // Widgets
 import '../widgets/login_fields.dart';
+import 'package:gymigo/widgets/checkbox.dart';
 
+// ignore: must_be_immutable
 class Workout extends StatefulWidget {
   late List list;
   late int itemNum;
@@ -27,7 +31,7 @@ class _WorkoutState extends State<Workout> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(2),
+        margin: const EdgeInsets.all(2),
         width: 360,
         // height: 60,
         child: Column(
@@ -44,6 +48,18 @@ class _WorkoutState extends State<Workout> {
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                   ),
+
+                  Theme(
+                    child: MyCheckbox(),
+                    data: ThemeData(
+                      primarySwatch: Colors.blue,
+                      unselectedWidgetColor: Globals.purple,
+                    ),
+                  ),
+
+                  const SizedBox(width: 180,),
+
+
                   IconButton(
                     onPressed: () {
                       (widget.list).removeWhere(

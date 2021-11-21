@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+// Pages
 import 'package:gymigo/pages/globals.dart';
+
+// Widgets
 import 'package:gymigo/widgets/day_card.dart';
 
 // Firebase

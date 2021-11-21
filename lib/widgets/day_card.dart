@@ -1,7 +1,11 @@
-// ignore_for_file: file_names
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Pages
 import 'package:gymigo/pages/globals.dart';
+
+// Widgets
+import 'package:gymigo/widgets/checkbox.dart';
 
 class DayCard extends StatefulWidget {
   final String day;
@@ -23,6 +27,7 @@ class _DayCardState extends State<DayCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+
       child: Container(
         margin: const EdgeInsets.all(20),
         width: 360,
@@ -47,16 +52,7 @@ class _DayCardState extends State<DayCard> {
               child: Row(
                 children: [
                   Theme(
-                    child: Checkbox(
-                      value: _checkbox,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkbox = true;
-                        });
-                      },
-                      checkColor: Globals.boxGrey,
-                      activeColor: Globals.purple,
-                    ),
+                    child: MyCheckbox(),
                     data: ThemeData(
                       primarySwatch: Colors.blue,
                       unselectedWidgetColor: Globals.textWhite,
@@ -81,6 +77,8 @@ class _DayCardState extends State<DayCard> {
       onTap: () {
         Navigator.pushNamed(context, '/day');
       },
+      splashFactory: NoSplash.splashFactory,
+      highlightColor: Color.fromRGBO(0, 0, 0, 0),
     );
   }
 }
