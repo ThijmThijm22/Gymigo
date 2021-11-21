@@ -46,10 +46,6 @@ class NewInput extends StatelessWidget {
         controller: controller,
         validator: validate,
         obscureText: obscure,
-
-        onEditingComplete: () {
-
-        },
       ),
     );
   }
