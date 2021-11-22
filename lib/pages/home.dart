@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 // Pages
@@ -72,10 +74,14 @@ class _HomeState extends State<Home> {
                 margin: EdgeInsets.only(top: 8),
                 child: Align(
                   alignment: Alignment.topCenter,
-                  child: Text(
-                    'Gymigo',
-                    style: TextStyle(color: Globals.textGrey, fontSize: 15),
+                  child: Image.asset(
+                    'assets/gymigo_logo_final.png',
+                    width: 85,
                   ),
+                  // child: Text(
+                  //   'Gymigo',
+                  //   style: TextStyle(color: Globals.textGrey, fontSize: 15),
+                  // ),
                 )),
           ),
           Container(

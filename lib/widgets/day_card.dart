@@ -22,12 +22,9 @@ class DayCard extends StatefulWidget {
 }
 
 class _DayCardState extends State<DayCard> {
-  bool _checkbox = false;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-
       child: Container(
         margin: const EdgeInsets.all(20),
         width: 360,

@@ -35,7 +35,7 @@ class _DayState extends State<Day> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
-                  counterText: "",
+                  counterText: " ",
                   border: InputBorder.none,
                   hintText: "What's in today's workout?",
                   hintStyle: TextStyle(fontSize: 24, color: Globals.textGrey),
@@ -88,10 +88,7 @@ class _DayState extends State<Day> {
           elevation: 0,
           leading: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                );
+                Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
         ),
