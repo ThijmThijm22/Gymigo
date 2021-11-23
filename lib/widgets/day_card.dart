@@ -49,7 +49,7 @@ class _DayCardState extends State<DayCard> {
               child: Row(
                 children: [
                   Theme(
-                    child: MyCheckbox(),
+                    child: MyCheckbox(key: UniqueKey(),),
                     data: ThemeData(
                       primarySwatch: Colors.blue,
                       unselectedWidgetColor: Globals.textWhite,
@@ -72,10 +72,11 @@ class _DayCardState extends State<DayCard> {
         ),
       ),
       onTap: () {
+        
         Navigator.pushNamed(context, '/day');
       },
       splashFactory: NoSplash.splashFactory,
-      highlightColor: Color.fromRGBO(0, 0, 0, 0),
+      highlightColor: const Color.fromRGBO(0, 0, 0, 0),
     );
   }
 }

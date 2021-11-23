@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gymigo/pages/home.dart';
+import 'package:provider/provider.dart';
 import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
@@ -18,6 +18,7 @@ class _DayState extends State<Day> {
   callback(workouts) {
     setState(() {});
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +89,9 @@ class _DayState extends State<Day> {
           elevation: 0,
           leading: IconButton(
               onPressed: () {
+                workouts.forEach((element) {
+                  
+                });
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
