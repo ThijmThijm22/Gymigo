@@ -34,7 +34,6 @@ class _WorkoutState extends State<Workout> {
     return Container(
         margin: const EdgeInsets.all(2),
         width: 360,
-        // height: 60,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,7 +49,9 @@ class _WorkoutState extends State<Workout> {
                         fontWeight: FontWeight.bold),
                   ),
                   Theme(
-                    child: MyCheckbox(key: UniqueKey(),),
+                    child: MyCheckbox(
+                      key: UniqueKey(),
+                    ),
                     data: ThemeData(
                       primarySwatch: Colors.blue,
                       unselectedWidgetColor: Globals.purple,
@@ -80,6 +81,13 @@ class _WorkoutState extends State<Workout> {
                 bgColor: Globals.boxGrey,
                 color: Colors.white,
                 placeholder: 'Enter exercise here'),
+            Divider(
+              color: Globals.textGrey,
+              height: 25,
+              thickness: 0.25,
+              indent: 100,
+              endIndent: 100,
+            ),
           ],
         ));
   }

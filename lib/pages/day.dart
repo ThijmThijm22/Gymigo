@@ -19,7 +19,6 @@ class _DayState extends State<Day> {
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,19 +78,21 @@ class _DayState extends State<Day> {
           ),
         ]),
         appBar: AppBar(
-          title: Text(
-            // UPGRADE: de datum zou automatisch moeten veranderen naar de dag zelf
-            'Maandag, 25 oktober 2021',
-            style: TextStyle(color: Globals.textGrey, fontSize: 15),
+          // title: Text(
+          //
+          //   'Maandag, 25 oktober 2021',
+          //   style: TextStyle(color: Globals.textGrey, fontSize: 15),
+          // ),
+          title: Image.asset(
+            'assets/gymigo_logo_final.png',
+            width: 85,
           ),
           centerTitle: true,
           backgroundColor: Globals.background,
           elevation: 0,
           leading: IconButton(
               onPressed: () {
-                workouts.forEach((element) {
-                  
-                });
+                workouts.forEach((element) {});
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
