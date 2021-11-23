@@ -21,32 +21,30 @@ class NewInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextFormField(
-        decoration: InputDecoration(
-          hintText: placeholder,
-          hintStyle: TextStyle(
-            color: color,
-          ),
-          filled: true,
-          fillColor: bgColor,
-          focusedBorder: InputBorder.none,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color: bgColor,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          )
-        ),
-
-        style: TextStyle( 
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: placeholder,
+        hintStyle: TextStyle(
           color: color,
         ),
-        
-        controller: controller,
-        validator: validate,
-        obscureText: obscure,
+        filled: true,
+        fillColor: bgColor,
+        focusedBorder: InputBorder.none,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: bgColor,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        )
       ),
+
+      style: TextStyle( 
+        color: color,
+      ),
+      
+      controller: controller,
+      validator: validate,
+      obscureText: obscure,
     );
   }
 }

@@ -7,7 +7,7 @@ class GetQuote {
 
   Future <Map> randomNum() async {
     // Random Num
-    var rng = new Random();
+    var rng =Random();
 
     // Get Data
     Response res = await get(Uri.parse('https://type.fit/api/quotes'));

@@ -13,12 +13,13 @@ class Workout extends StatefulWidget {
   late int itemNum;
   late Function callback;
 
-  Workout(
-      {Key? key,
-      required this.itemNum,
-      required this.list,
-      required this.callback})
-      : super(key: key);
+  Workout({
+    Key? key,
+    required this.itemNum,
+    required this.list,
+    required this.callback,
+    bool? checked,
+  }) : super(key: key);
 
   @override
   _WorkoutState createState() => _WorkoutState();
@@ -48,18 +49,16 @@ class _WorkoutState extends State<Workout> {
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                   ),
-
                   Theme(
-                    child: MyCheckbox(),
+                    child: MyCheckbox(key: UniqueKey(),),
                     data: ThemeData(
                       primarySwatch: Colors.blue,
                       unselectedWidgetColor: Globals.purple,
                     ),
                   ),
-
-                  const SizedBox(width: 180,),
-
-
+                  const SizedBox(
+                    width: 180,
+                  ),
                   IconButton(
                     onPressed: () {
                       (widget.list).removeWhere(
