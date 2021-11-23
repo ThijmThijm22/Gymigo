@@ -1,6 +1,5 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // Pages
 import 'package:gymigo/pages/globals.dart';
@@ -61,6 +60,9 @@ class _HomeState extends State<Home> {
     makeCollection();
   }
 
+  DateTime now = DateTime.now();
+  String today = DateFormat('EEEE, d MMM, yyyy').format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
@@ -74,14 +76,10 @@ class _HomeState extends State<Home> {
                 margin: EdgeInsets.only(top: 8),
                 child: Align(
                   alignment: Alignment.topCenter,
-                  child: Image.asset(
-                    'assets/gymigo_logo_final.png',
-                    width: 85,
+                  child: Text(
+                    'Datum: $today',
+                    style: TextStyle(color: Globals.textGrey, fontSize: 15),
                   ),
-                  // child: Text(
-                  //   'Gymigo',
-                  //   style: TextStyle(color: Globals.textGrey, fontSize: 15),
-                  // ),
                 )),
           ),
           Container(

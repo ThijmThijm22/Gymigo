@@ -21,16 +21,10 @@ Future<void> main() async {
   WidgetsFlutterBinding();
   await Firebase.initializeApp();
 
-
-
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => DayProv(),
-      child: MyApp(),
-    )
-    
-    
-  );
+  runApp(ChangeNotifierProvider(
+    create: (_) => DayProv(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -41,20 +35,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.manropeTextTheme(),
-        primaryColor: Colors.white,
-      ),
-      initialRoute: '/home',
-      routes: {
-        '/splash': (context) => Splash(
-              routeTo: '/day',
-            ),
-        '/welcome': (context) => const Welcome(),
-        '/login': (context) => const Login(),
-        '/home': (context) => const Home(),
-        '/day': (context) => const Day(),
-      });
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.manropeTextTheme(),
+          primaryColor: Colors.white,
+        ),
+        initialRoute: '/home',
+        routes: {
+          '/splash': (context) => Splash(
+                routeTo: '/day',
+              ),
+          '/welcome': (context) => const Welcome(),
+          '/login': (context) => const Login(),
+          '/home': (context) => const Home(),
+          '/day': (context) => const Day(),
+        });
   }
 }
