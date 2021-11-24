@@ -32,13 +32,41 @@ class _HomeState extends State<Home> {
         print('new collection');
         inst.collection(user!.uid).add({
           'email': user!.email,
-          'Monday': 'Push',
-          'Tuesday': 'Pull',
-          'Wednesday': 'Legs',
-          'Thursday': 'Rest Day',
-          'Friday': 'Push',
-          'Saturday': 'Pull',
-          'Sunday': 'Legs',
+          'Monday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Tuesday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Wednesday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Thursday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Friday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Saturday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
+          'Sunday': {
+            'checked': false,
+            'topic': "under construction...",
+            'widgets': {}
+          },
         });
       } else {
         print('getting collection');
@@ -52,6 +80,7 @@ class _HomeState extends State<Home> {
           });
         });
       }
+
     });
   }
 
