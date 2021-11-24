@@ -21,10 +21,7 @@ Future<void> main() async {
   WidgetsFlutterBinding();
   await Firebase.initializeApp();
 
-  runApp(ChangeNotifierProvider(
-    create: (_) => DayProv(),
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -40,7 +37,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.manropeTextTheme(),
           primaryColor: Colors.white,
         ),
-        initialRoute: '/home',
+        initialRoute: '/login',
         routes: {
           '/splash': (context) => Splash(
                 routeTo: '/day',

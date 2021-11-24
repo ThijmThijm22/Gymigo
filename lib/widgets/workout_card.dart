@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// provider
+import 'package:gymigo/provider/dayprovider.dart';
+import 'package:provider/provider.dart';
 // Pages
 import 'package:gymigo/pages/globals.dart';
 
@@ -30,6 +33,7 @@ class _WorkoutState extends State<Workout> {
   String? validatortest() {}
 
   @override
+
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.all(2),

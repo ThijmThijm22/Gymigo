@@ -14,19 +14,17 @@ class MyCheckbox extends StatefulWidget {
 }
 
 class _MyCheckboxState extends State<MyCheckbox> {
+  bool _checked = false;
+
   @override
   Widget build(BuildContext context) {
     Key? key = widget.key;
     return Checkbox(
-      value: Provider.of<DayProv>(context, listen: true)
-              .checked[key.hashCode] ??
-          false,
+      value: _checked,
       onChanged: (value) {
-        print(
-            'checkbox[${key.hashCode}]: ${Provider.of<DayProv>(context, listen: false).checked[key.hashCode]}');
+        _checked = value!;
         setState(() {
-          Provider.of<DayProv>(context, listen: false)
-              .changeChecked(value, widget.key.hashCode);
+          
         });
       },
       checkColor: Globals.boxGrey,
