@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gymigo/pages/globals.dart';
 
 // provider
-import 'package:gymigo/provider/dayprovider.dart';
 import 'package:provider/provider.dart';
 
 class MyCheckbox extends StatefulWidget {
-  const MyCheckbox({required Key key}) : super(key: key);
+  MyCheckbox({required Key key}) : super(key: key);
 
   @override
   State<MyCheckbox> createState() => _MyCheckboxState();
@@ -23,9 +22,7 @@ class _MyCheckboxState extends State<MyCheckbox> {
       value: _checked,
       onChanged: (value) {
         _checked = value!;
-        setState(() {
-          
-        });
+        setState(() {});
       },
       checkColor: Globals.boxGrey,
       activeColor: Globals.purple,

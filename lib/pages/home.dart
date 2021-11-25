@@ -11,6 +11,23 @@ import 'package:gymigo/widgets/day_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// provider
+import 'package:provider/provider.dart';
+import 'package:gymigo/provider/firestoreprov.dart';
+
+class  HomeStream extends StatelessWidget {
+  const HomeStream ({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider(
+    create: (context) => FireProv().getUserData(),
+    initialData: Map(),
+    child: Home(),
+  );
+  }
+}
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -22,7 +39,43 @@ class _HomeState extends State<Home> {
   User? user = FirebaseAuth.instance.currentUser;
 
   // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
-  Map userData = {};
+  Map userData = {
+    'Monday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Tuesday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Wednesday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Thursday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Friday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Saturday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+    'Sunday': {
+      'checked': false,
+      'topic': "under construction...",
+      'widgets': {}
+    },
+  };
   makeCollection() {
     var inst = FirebaseFirestore.instance;
     var collectie = inst.collection(user!.uid);
@@ -80,7 +133,6 @@ class _HomeState extends State<Home> {
           });
         });
       }
-
     });
   }
 
@@ -94,6 +146,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    
+    // FireProv result = Provider.of<FireProv>(context);
+    // print('fireprof: $result');
+
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
@@ -145,41 +201,18 @@ class _HomeState extends State<Home> {
           // Als je niks ziet bij de daycards dan kan dat zijn omdat de gebruiker niet ingelogd is
           // Je kan inloggen met test1@test.com, password: 123456
           // Als je verkeerd wachtwoord ingeeft dan blokkeer de app nog momenteel dit komt door een fout bij flutter zelf
+          DayCard(day: 'Monday', topic: userData['Monday']['topic'].toString()),
           DayCard(
-              day: 'Monday',
-              topic: userData['Monday'] == null
-                  ? "Topic for the day"
-                  : userData['Monday']),
-          DayCard(
-              day: 'Tuesday',
-              topic: userData['Tuesday'] == null
-                  ? "Topic for the day"
-                  : userData['Tuesday']),
+              day: 'Tuesday', topic: userData['Tuesday']['topic'].toString()),
           DayCard(
               day: 'Wednesday',
-              topic: userData['Wednesday'] == null
-                  ? "Topic for the day"
-                  : userData['Wednesday']),
+              topic: userData['Wednesday']['topic'].toString()),
           DayCard(
-              day: 'Thursday',
-              topic: userData['Thursday'] == null
-                  ? "Topic for the day"
-                  : userData['Thursday']),
+              day: 'Thursday', topic: userData['Thursday']['topic'].toString()),
+          DayCard(day: 'Friday', topic: userData['Friday']['topic'].toString()),
           DayCard(
-              day: 'Friday',
-              topic: userData['Friday'] == null
-                  ? "Topic for the day"
-                  : userData['Friday']),
-          DayCard(
-              day: 'Saturday',
-              topic: userData['Saturday'] == null
-                  ? "Topic for the day"
-                  : userData['Saturday']),
-          DayCard(
-              day: 'Sunday',
-              topic: userData['Sunday'] == null
-                  ? "Topic for the day"
-                  : userData['Sunday']),
+              day: 'Saturday', topic: userData['Saturday']['topic'].toString()),
+          DayCard(day: 'Sunday', topic: userData['Sunday']['topic'].toString()),
 
           // checken voor enumeraties in Flutter: enum maken met dagen van
           // de week en dan elke card een vaste waarden geven aan de hand

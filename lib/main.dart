@@ -9,7 +9,7 @@ import 'package:gymigo/pages/day.dart';
 import 'package:gymigo/pages/welcome.dart';
 
 // provider
-import 'package:gymigo/provider/dayprovider.dart';
+import 'package:gymigo/provider/firestoreprov.dart';
 
 // Google Fonts
 import 'package:google_fonts/google_fonts.dart';
@@ -17,10 +17,10 @@ import 'package:google_fonts/google_fonts.dart';
 // Firebase
 import 'package:firebase_core/firebase_core.dart';
 
-Future<void> main() async {
+Future <void> main() async{
   WidgetsFlutterBinding();
   await Firebase.initializeApp();
-
+  
   runApp(MyApp());
 }
 
@@ -37,14 +37,14 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.manropeTextTheme(),
           primaryColor: Colors.white,
         ),
-        initialRoute: '/login',
+        initialRoute: '/home',
         routes: {
           '/splash': (context) => Splash(
                 routeTo: '/day',
               ),
           '/welcome': (context) => const Welcome(),
           '/login': (context) => const Login(),
-          '/home': (context) => const Home(),
+          '/home': (context) => const HomeStream(),
           '/day': (context) => const Day(),
         });
   }
