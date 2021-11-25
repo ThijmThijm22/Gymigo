@@ -49,7 +49,7 @@ class _DayCardState extends State<DayCard> {
               child: Row(
                 children: [
                   Theme(
-                    child: MyCheckbox(key: UniqueKey(),),
+                    child: MyCheckbox(key: UniqueKey()),
                     data: ThemeData(
                       primarySwatch: Colors.blue,
                       unselectedWidgetColor: Globals.textWhite,

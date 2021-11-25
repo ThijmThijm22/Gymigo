@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 // provider
-import 'package:gymigo/provider/dayprovider.dart';
 import 'package:provider/provider.dart';
 // Pages
 import 'package:gymigo/pages/globals.dart';
