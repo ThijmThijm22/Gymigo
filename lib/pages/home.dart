@@ -80,7 +80,6 @@ class _HomeState extends State<Home> {
           });
         });
       }
-
     });
   }
 
@@ -106,7 +105,7 @@ class _HomeState extends State<Home> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    'Datum: $today',
+                    '$today',
                     style: TextStyle(color: Globals.textGrey, fontSize: 15),
                   ),
                 )),

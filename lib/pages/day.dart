@@ -35,10 +35,10 @@ class _DayState extends State<Day> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
-                  counterText: " ",
+                  counterText: "",
                   border: InputBorder.none,
                   hintText: "What's in today's workout?",
-                  hintStyle: TextStyle(fontSize: 24, color: Globals.textGrey),
+                  hintStyle: TextStyle(fontSize: 24, color: Globals.purple),
                 ),
               ),
             ),
@@ -59,7 +59,7 @@ class _DayState extends State<Day> {
                       minLines: 1,
                       maxLines: 5,
                       style: TextStyle(
-                          color: Globals.textGrey,
+                          color: Globals.white2,
                           fontSize: 15,
                           fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
@@ -67,7 +67,7 @@ class _DayState extends State<Day> {
                         hintText:
                             "Write here your notes for today's workout session ...",
                         hintStyle:
-                            TextStyle(fontSize: 15, color: Globals.textWhite),
+                            TextStyle(fontSize: 15, color: Globals.white2),
                       ),
                     ),
                     Column(children: workouts),

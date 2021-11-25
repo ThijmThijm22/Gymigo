@@ -6,4 +6,6 @@ class Globals {
   static Color textGrey = const Color.fromARGB(255, 112, 110, 110);
   static Color textWhite = const Color.fromARGB(255, 255, 255, 255);
   static Color boxGrey = const Color.fromARGB(255, 56, 56, 56);
+  static Color purpleLight = const Color.fromARGB(255, 184, 186, 255);
+  static Color white2 = const Color.fromARGB(255, 195, 195, 195);
 }

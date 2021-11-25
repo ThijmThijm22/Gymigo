@@ -33,7 +33,6 @@ class _WorkoutState extends State<Workout> {
   String? validatortest() {}
 
   @override
-
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.all(2),

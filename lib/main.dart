@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.manropeTextTheme(),
           primaryColor: Colors.white,
         ),
-        initialRoute: '/login',
+        initialRoute: '/home',
         routes: {
           '/splash': (context) => Splash(
                 routeTo: '/day',
