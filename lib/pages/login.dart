@@ -119,6 +119,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        Image.asset("assets/Vector_4.png", scale: 0.5),
         Positioned(
           top: 140,
           bottom: 0,
