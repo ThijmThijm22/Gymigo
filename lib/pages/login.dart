@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                             } on FirebaseAuthException catch (err) {
                               print("firebaseauth: ${err.message}");
                             } on PlatformException catch (err) {
-                              print("platforexeption: ${err}");
+                              print("platforexeption: $err");
                             }
                             setState(() {});
                           }),
@@ -107,13 +107,14 @@ class _LoginState extends State<Login> {
   }
 }
 
+// ignore: must_be_immutable
 class SignUp extends StatelessWidget {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
   bool selected = false;
 
-  SignUp({required this.emailController, required this.passwordController});
+  SignUp({Key? key, required this.emailController, required this.passwordController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

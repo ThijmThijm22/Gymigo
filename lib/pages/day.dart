@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
@@ -95,7 +94,7 @@ class _DayState extends State<Day> {
                 workouts.forEach((element) {});
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back)),
+              icon: const Icon(Icons.arrow_back)),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

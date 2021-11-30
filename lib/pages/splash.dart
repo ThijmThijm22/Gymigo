@@ -6,10 +6,11 @@ import 'dart:async';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+// ignore: must_be_immutable
 class Splash extends StatefulWidget {
   late String routeTo;
 
-  Splash({required this.routeTo});
+  Splash({Key? key, required this.routeTo}) : super(key: key);
 
   @override
   State<Splash> createState() => _SplashState();
@@ -21,16 +22,17 @@ class _SplashState extends State<Splash> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/welcome');
+      Navigator.pushReplacementNamed(context, widget.routeTo);
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Center(
             child: Image.asset('assets/gymigo_logo_final.png', width: 300),
           ),

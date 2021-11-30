@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-// provider
-import 'package:provider/provider.dart';
+// // provider
+// import 'package:provider/provider.dart';
 // Pages
 import 'package:gymigo/pages/globals.dart';
 

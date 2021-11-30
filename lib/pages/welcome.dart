@@ -15,7 +15,6 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  @override
   Map quoteData = {};
   String quote = "";
   String author = "";
@@ -31,13 +30,14 @@ class _WelcomeState extends State<Welcome> {
 
   // Timer verandert om de zoveel seconden de quote
   quoteTimer() async {
-    Timer.periodic(Duration(seconds: 10), (timer) {
+    Timer.periodic(const Duration(seconds: 10), (timer) {
       setQuote();
       setState(() {});
     });
   }
 
   // Deze functie runt wanner de app gebuild is
+  @override
   void initState() {
     super.initState();
     setQuote().then((res) {
@@ -46,18 +46,19 @@ class _WelcomeState extends State<Welcome> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Globals.background,
       body: Column(
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Image.asset(
             'assets/gymigo_logo_final.png',
             width: 300,
           ),
-          SizedBox(height: 100),
-          Container(
+          const SizedBox(height: 100),
+          SizedBox(
             height: 200,
             child: Column(
               children: [
@@ -67,17 +68,17 @@ class _WelcomeState extends State<Welcome> {
                     child: Text(
                       quote == ""
                           ? "Light Weight BABY!"
-                          : "\"${quote}\"",
-                      style: TextStyle(
+                          : "\"$quote\"",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  author == "" ? "- Ronnie Coleman" : "- ${author}",
+                  author == "" ? "- Ronnie Coleman" : "- $author",
                   style: TextStyle(
                     color: Globals.purple,
                   ),

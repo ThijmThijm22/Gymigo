@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class RoundButton extends StatelessWidget {
   late String title;
   late double width;
@@ -8,11 +9,11 @@ class RoundButton extends StatelessWidget {
 
   late Function pressed;
 
-  RoundButton({ this.width = 300, this.height = 40, this.bgColor = Colors.green, this.title = 'Click Me!', required this.pressed});
+  RoundButton({Key? key,  this.width = 300, this.height = 40, this.bgColor = Colors.green, this.title = 'Click Me!', required this.pressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
               height: height,
               width: width,
               child: ElevatedButton(

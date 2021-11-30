@@ -15,16 +15,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:gymigo/provider/firestoreprov.dart';
 
-class  HomeStream extends StatelessWidget {
-  const HomeStream ({ Key? key }) : super(key: key);
+class HomeStream extends StatelessWidget {
+  const HomeStream({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider(
-    create: (context) => FireProv().getUserData(),
-    initialData: Map(),
-    child: Home(),
-  );
+    return MultiProvider(
+      providers:[ StreamProvider(
+        create: (context) => FireProv().getUserData(),
+        initialData: const {},
+      )
+      ],
+    child:const Home(),
+    );
   }
 }
 
@@ -87,37 +90,37 @@ class _HomeState extends State<Home> {
           'email': user!.email,
           'Monday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Tuesday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Wednesday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Thursday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Friday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Saturday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
           'Sunday': {
             'checked': false,
-            'topic': "under construction...",
+            'topic': "Press to enter workout...",
             'widgets': {}
           },
         });
@@ -128,7 +131,6 @@ class _HomeState extends State<Home> {
           res.docs.forEach((el) {
             userData = el.data();
             print(userData);
-            print(userData['Monday']);
             setState(() {});
           });
         });
@@ -136,6 +138,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+  @override
   void initState() {
     super.initState();
     makeCollection();
@@ -146,7 +149,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    
+    // ff gecomment om errors te voorkomen: 
     // FireProv result = Provider.of<FireProv>(context);
     // print('fireprof: $result');
 
@@ -158,11 +161,11 @@ class _HomeState extends State<Home> {
         child: Wrap(children: <Widget>[
           SafeArea(
             child: Container(
-                margin: EdgeInsets.only(top: 8),
+                margin: const EdgeInsets.only(top: 8),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    '$today',
+                    today,
                     style: TextStyle(color: Globals.textGrey, fontSize: 15),
                   ),
                 )),
@@ -200,7 +203,7 @@ class _HomeState extends State<Home> {
 
           // Als je niks ziet bij de daycards dan kan dat zijn omdat de gebruiker niet ingelogd is
           // Je kan inloggen met test1@test.com, password: 123456
-          // Als je verkeerd wachtwoord ingeeft dan blokkeer de app nog momenteel dit komt door een fout bij flutter zelf
+          // Als je verkeerd wachtwoord ingeeft dan blokkeerd de app nog momenteel (=error).
           DayCard(day: 'Monday', topic: userData['Monday']['topic'].toString()),
           DayCard(
               day: 'Tuesday', topic: userData['Tuesday']['topic'].toString()),
@@ -213,10 +216,6 @@ class _HomeState extends State<Home> {
           DayCard(
               day: 'Saturday', topic: userData['Saturday']['topic'].toString()),
           DayCard(day: 'Sunday', topic: userData['Sunday']['topic'].toString()),
-
-          // checken voor enumeraties in Flutter: enum maken met dagen van
-          // de week en dan elke card een vaste waarden geven aan de hand
-          // van de card & dag. card 1 = altijd Monday, ...
         ]),
       ),
     );
