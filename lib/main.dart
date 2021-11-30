@@ -17,10 +17,10 @@ import 'package:google_fonts/google_fonts.dart';
 // Firebase
 import 'package:firebase_core/firebase_core.dart';
 
-Future <void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding();
   await Firebase.initializeApp();
-  
+
   runApp(MyApp());
 }
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.manropeTextTheme(),
           primaryColor: Colors.white,
         ),
-        initialRoute: '/home',
+        initialRoute: '/splash',
         routes: {
           '/splash': (context) => Splash(
                 routeTo: '/day',
