@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 // Import pages
 import 'package:gymigo/pages/splash.dart';
@@ -8,8 +7,7 @@ import 'package:gymigo/pages/home.dart';
 import 'package:gymigo/pages/day.dart';
 import 'package:gymigo/pages/welcome.dart';
 
-// provider
-import 'package:gymigo/provider/firestoreprov.dart';
+
 
 // Google Fonts
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +19,7 @@ Future <void> main() async{
   WidgetsFlutterBinding();
   await Firebase.initializeApp();
   
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/home',
         routes: {
           '/splash': (context) => Splash(
-                routeTo: '/day',
+                routeTo: '/welcome',
               ),
           '/welcome': (context) => const Welcome(),
           '/login': (context) => const Login(),
