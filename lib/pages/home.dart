@@ -20,12 +20,18 @@ class HomeStream extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     return MultiProvider(
       providers: [
-        StreamProvider(
-          create: (context) => FireProv().getUserData(),
-          initialData: const {},
-        )
+        // StreamProvider<QuerySnapshot>(
+        //   create: (context) => FireProv().getUserData,
+        //   initialData:  FirebaseFirestore.instance.collection(user!.uid),
+        // ),
+        StreamProvider<String>(
+            initialData: 25.toString(),
+            create: (_) => FireProv().age ,
+            catchError: (_, error) => error.toString(),
+          ),
       ],
       child: const Home(),
     );
@@ -150,8 +156,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // ff gecomment om errors te voorkomen:
-    // FireProv result = Provider.of<FireProv>(context);
+
+    // FireProv result = Provider.of(context);
     // print('fireprof: $result');
 
     User? user = FirebaseAuth.instance.currentUser;
@@ -217,6 +223,18 @@ class _HomeState extends State<Home> {
           DayCard(
               day: 'Saturday', topic: userData['Saturday']['topic'].toString()),
           DayCard(day: 'Sunday', topic: userData['Sunday']['topic'].toString()),
+          Consumer<String>(builder: (context, age, child) {
+            return Column(
+              children: [
+                Text(
+                    age,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+              ],
+            );
+          })
         ]),
       ),
     );
