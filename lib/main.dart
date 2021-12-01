@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.manropeTextTheme(),
           primaryColor: Colors.white,
         ),
-        initialRoute: '/splash',
+        initialRoute: '/home',
         routes: {
           '/splash': (context) => Splash(
                 routeTo: '/welcome',
