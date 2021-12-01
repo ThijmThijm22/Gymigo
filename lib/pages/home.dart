@@ -151,11 +151,12 @@ class _HomeState extends State<Home> {
     makeCollection();
   }
 
-  DateTime now = DateTime.now();
+  // DateTime now = DateTime.now();
   String today = DateFormat('EEEE, d MMM, yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
+
     // FireProv result = Provider.of(context);
     // print('fireprof: $result');
 
