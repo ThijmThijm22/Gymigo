@@ -21,12 +21,13 @@ class HomeStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers:[ StreamProvider(
-        create: (context) => FireProv().getUserData(),
-        initialData: const {},
-      )
+      providers: [
+        StreamProvider(
+          create: (context) => FireProv().getUserData(),
+          initialData: const {},
+        )
       ],
-    child:const Home(),
+      child: const Home(),
     );
   }
 }
@@ -144,12 +145,12 @@ class _HomeState extends State<Home> {
     makeCollection();
   }
 
-  DateTime now = DateTime.now();
+  // DateTime now = DateTime.now();
   String today = DateFormat('EEEE, d MMM, yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
-    // ff gecomment om errors te voorkomen: 
+    // ff gecomment om errors te voorkomen:
     // FireProv result = Provider.of<FireProv>(context);
     // print('fireprof: $result');
 

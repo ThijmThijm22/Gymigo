@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gymigo/widgets/date_widget.dart';
 import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
+
+// Date:
+// import 'package:intl/intl.dart';
 
 class Day extends StatefulWidget {
   const Day({Key? key}) : super(key: key);
@@ -17,6 +21,9 @@ class _DayState extends State<Day> {
   callback(workouts) {
     setState(() {});
   }
+
+  // DateTime now = DateTime.now();
+  // String today = DateFormat('EEEE').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +89,14 @@ class _DayState extends State<Day> {
           //   'Maandag, 25 oktober 2021',
           //   style: TextStyle(color: Globals.textGrey, fontSize: 15),
           // ),
-          title: Image.asset(
-            'assets/gymigo_logo_final.png',
-            width: 85,
-          ),
+          //
+          //
+          // LOGO IMAGE:
+          // title: Image.asset(
+          //   'assets/gymigo_logo_final.png',
+          //   width: 85,
+          // ),
+          title: Date(),
           centerTitle: true,
           backgroundColor: Globals.background,
           elevation: 0,

@@ -13,7 +13,7 @@ class DayCard extends StatefulWidget {
 
   const DayCard(
       {Key? key,
-      this.day = "{Day of the week}",
+      this.day = "Day of the week",
       this.topic = "Topic for the day"})
       : super(key: key);
 
@@ -72,7 +72,6 @@ class _DayCardState extends State<DayCard> {
         ),
       ),
       onTap: () {
-        
         Navigator.pushNamed(context, '/day');
       },
       splashFactory: NoSplash.splashFactory,
