@@ -9,10 +9,20 @@ class FireProv extends ChangeNotifier {
 
   // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
 
-  Stream getUserData() {
+  Stream <QuerySnapshot>get getUserData {
     var inst = FirebaseFirestore.instance;
     var collectie = inst.collection(user!.uid);
+    print('collectione' + collectie.toString());
     return collectie.snapshots();
   }
 
+   Stream<String> get age async* {
+    var i = 5;
+    while (i < 85) {
+      await Future.delayed(Duration(seconds: 1), () {
+        i++;
+      });
+      yield i.toString();
+    }
+  }
 }
