@@ -28,10 +28,10 @@ class HomeStream extends StatelessWidget {
         //   initialData:  FirebaseFirestore.instance.collection(user!.uid),
         // ),
         StreamProvider<String>(
-            initialData: 25.toString(),
-            create: (_) => FireProv().age ,
-            catchError: (_, error) => error.toString(),
-          ),
+          initialData: 25.toString(),
+          create: (_) => FireProv().age,
+          catchError: (_, error) => error.toString(),
+        ),
       ],
       child: const Home(),
     );
@@ -156,7 +156,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
     // FireProv result = Provider.of(context);
     // print('fireprof: $result');
 
@@ -227,11 +226,11 @@ class _HomeState extends State<Home> {
             return Column(
               children: [
                 Text(
-                    age,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
+                  age,
+                  style: const TextStyle(
+                    color: Colors.white,
                   ),
+                ),
               ],
             );
           })

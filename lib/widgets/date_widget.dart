@@ -3,7 +3,7 @@ import 'package:gymigo/pages/globals.dart';
 
 class Date extends StatefulWidget {
   final String day;
-  const Date({Key? key, this.day = "Day of the week"}) : super(key: key);
+  const Date({Key? key, required this.day}) : super(key: key);
 
   @override
   _DateState createState() => _DateState();
