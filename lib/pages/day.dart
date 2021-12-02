@@ -96,7 +96,9 @@ class _DayState extends State<Day> {
           //   'assets/gymigo_logo_final.png',
           //   width: 85,
           // ),
-          title: Date(),
+          title: Date(
+            day: 'Maandag',
+          ),
           centerTitle: true,
           backgroundColor: Globals.background,
           elevation: 0,
