@@ -20,17 +20,14 @@ class HomeStream extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
     return MultiProvider(
       providers: [
-        // StreamProvider<QuerySnapshot>(
-        //   create: (context) => FireProv().getUserData,
-        //   initialData:  FirebaseFirestore.instance.collection(user!.uid),
-        // ),
-        StreamProvider<String>(
-          initialData: 25.toString(),
-          create: (_) => FireProv().age,
-          catchError: (_, error) => error.toString(),
+        StreamProvider<List>(
+          create: (context) => FireProv().getUserData,
+          initialData: const [],
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FireProv(),
         ),
       ],
       child: const Home(),
@@ -48,107 +45,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   User? user = FirebaseAuth.instance.currentUser;
 
-  // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
-  Map userData = {
-    'Monday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Tuesday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Wednesday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Thursday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Friday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Saturday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-    'Sunday': {
-      'checked': false,
-      'topic': "under construction...",
-      'widgets': {}
-    },
-  };
-  makeCollection() {
-    var inst = FirebaseFirestore.instance;
-    var collectie = inst.collection(user!.uid);
-
-    collectie.get().then((res) {
-      if (res.docs.toString() == '[]') {
-        print('new collection');
-        inst.collection(user!.uid).add({
-          'email': user!.email,
-          'Monday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Tuesday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Wednesday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Thursday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Friday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Saturday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-          'Sunday': {
-            'checked': false,
-            'topic': "Press to enter workout...",
-            'widgets': {}
-          },
-        });
-      } else {
-        print('getting collection');
-
-        collectie.get().then((res) {
-          res.docs.forEach((el) {
-            userData = el.data();
-            print(userData);
-            setState(() {});
-          });
-        });
-      }
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    makeCollection();
   }
 
   // DateTime now = DateTime.now();
@@ -156,8 +55,51 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // FireProv result = Provider.of(context);
-    // print('fireprof: $result');
+    var fireProv = Provider.of<FireProv>(context, listen: true);
+    var fireProvStream = Provider.of<List>(context, listen: true);
+
+    Map daysOfWeek = {
+      1: 'Monday',
+      2: 'Tuesday',
+      3: 'Wednesday',
+      4: 'Thursday',
+      5: 'Friday',
+      6: 'Saturday',
+      7: 'Sunday'
+    };
+
+    List<Widget> dayCardWidgets = [];
+
+    if (fireProvStream.isEmpty) {
+      for (int i = 1; i <= daysOfWeek.length; i++) {
+        fireProv.setUserData(
+          daysOfWeek[i],
+          false,
+          'Press me',
+        );
+      }
+    }
+
+    if (fireProvStream.isNotEmpty) {
+      for (int i = 1; i <= daysOfWeek.length; i++) {
+        fireProvStream.forEach((e) {
+          var data = e.data();
+          if(data['day'] == daysOfWeek[i]){
+          dayCardWidgets.add(
+            DayCard(
+              key: UniqueKey(),
+              day: data['day'],
+              topic: data['topic'],
+            ),
+          );
+          }
+        });
+      }
+
+      setState(() {
+        
+      });
+    }
 
     User? user = FirebaseAuth.instance.currentUser;
 
@@ -206,34 +148,9 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-
-          // Als je niks ziet bij de daycards dan kan dat zijn omdat de gebruiker niet ingelogd is
-          // Je kan inloggen met test1@test.com, password: 123456
-          // Als je verkeerd wachtwoord ingeeft dan blokkeerd de app nog momenteel (=error).
-          DayCard(day: 'Monday', topic: userData['Monday']['topic'].toString()),
-          DayCard(
-              day: 'Tuesday', topic: userData['Tuesday']['topic'].toString()),
-          DayCard(
-              day: 'Wednesday',
-              topic: userData['Wednesday']['topic'].toString()),
-          DayCard(
-              day: 'Thursday', topic: userData['Thursday']['topic'].toString()),
-          DayCard(day: 'Friday', topic: userData['Friday']['topic'].toString()),
-          DayCard(
-              day: 'Saturday', topic: userData['Saturday']['topic'].toString()),
-          DayCard(day: 'Sunday', topic: userData['Sunday']['topic'].toString()),
-          Consumer<String>(builder: (context, age, child) {
-            return Column(
-              children: [
-                Text(
-                  age,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            );
-          })
+          Column(
+            children: dayCardWidgets,
+          )
         ]),
       ),
     );

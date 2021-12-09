@@ -5,24 +5,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FireProv extends ChangeNotifier {
-  User? user = FirebaseAuth.instance.currentUser;
+  var inst = FirebaseFirestore.instance;
+  var userId = FirebaseAuth.instance.currentUser;
 
   // FireStore om de gegevens op te slaan van de gebruiker (IN PROGRESS)
 
-  Stream <QuerySnapshot>get getUserData {
-    var inst = FirebaseFirestore.instance;
-    var collectie = inst.collection(user!.uid);
-    print('collectione' + collectie.toString());
-    return collectie.snapshots();
+  Stream<List> get getUserData {
+    return inst
+        .collection(userId!.uid)
+        .snapshots()
+        .map((snapshots) => snapshots.docs.toList());
   }
 
-   Stream<String> get age async* {
-    var i = 5;
-    while (i < 85) {
-      await Future.delayed(Duration(seconds: 1), () {
-        i++;
-      });
-      yield i.toString();
-    }
+  void setUserData(String day, bool checked, String topic,) {
+    inst
+        .collection(userId!.uid)
+        .doc(day)
+        .set({'day': day, 'topic': topic, 'checked': checked, 'widgets': {
+        },});
   }
+
+    void updateData(String day, updateVar, update) {
+      inst.collection(userId!.uid).doc(day).update({
+        updateVar.toString(): update,
+      });
+    }
 }

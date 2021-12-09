@@ -4,11 +4,13 @@ import 'package:gymigo/widgets/workout_card.dart';
 
 import 'globals.dart';
 
-// Date:
-// import 'package:intl/intl.dart';
+// provider
+import 'package:provider/provider.dart';
+import 'package:gymigo/provider/firestoreprov.dart';
 
 class Day extends StatefulWidget {
-  const Day({Key? key}) : super(key: key);
+  late String day;
+  Day({Key? key, this.day = "Monday"}) : super(key: key);
 
   @override
   _DayState createState() => _DayState();
@@ -27,6 +29,25 @@ class _DayState extends State<Day> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController topicController = TextEditingController();
+
+    var fireProv = Provider.of<FireProv>(context, listen: true);
+    var fireProvStream = Provider.of<List>(context, listen: true);
+
+    Map data = {};
+
+    for (var e in fireProvStream) {
+      var eData = e.data();
+      if (eData['day'] == widget.day) {
+        data = {
+          'day': eData['day'],
+          'topic': eData['topic'],
+          'widgets': eData['widgets'],
+        };
+        break;
+      }
+    }
+
     return Scaffold(
         backgroundColor: Globals.background,
         body: Wrap(children: <Widget>[
@@ -35,7 +56,13 @@ class _DayState extends State<Day> {
             child: Align(
               alignment: Alignment.topLeft,
               child: TextField(
+                controller: topicController,
+                textInputAction: TextInputAction.go,
                 maxLength: 35,
+                onSubmitted: (e) {
+                  fireProv.updateData(
+                      widget.day, 'topic', topicController.text);
+                },
                 style: TextStyle(
                     color: Globals.purple,
                     fontSize: 24,
@@ -43,7 +70,9 @@ class _DayState extends State<Day> {
                 decoration: InputDecoration(
                   counterText: "",
                   border: InputBorder.none,
-                  hintText: "What's in today's workout?",
+                  hintText: data['topic'] == 'Press me'
+                      ? "What's in today's workout?"
+                      : data['topic'],
                   hintStyle: TextStyle(fontSize: 24, color: Globals.purple),
                 ),
               ),
@@ -60,22 +89,22 @@ class _DayState extends State<Day> {
                 alignment: Alignment.topLeft,
                 child: ListView(
                   children: [
-                    TextField(
-                      keyboardType: TextInputType.multiline,
-                      minLines: 1,
-                      maxLines: 5,
-                      style: TextStyle(
-                          color: Globals.white2,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText:
-                            "Write here your notes for today's workout session ...",
-                        hintStyle:
-                            TextStyle(fontSize: 15, color: Globals.white2),
-                      ),
-                    ),
+                    // TextField(
+                    //   // keyboardType: TextInputType.multiline,
+                    //   minLines: 1,
+                    //   maxLines: 5,
+                    //   style: TextStyle(
+                    //       color: Globals.white2,
+                    //       fontSize: 15,
+                    //       fontWeight: FontWeight.bold),
+                    //   decoration: InputDecoration(
+                    //     border: InputBorder.none,
+                    //     hintText:
+                    //         "Write here your notes for today's workout session ...",
+                    //     hintStyle:
+                    //         TextStyle(fontSize: 15, color: Globals.white2),
+                    //   ),
+                    // ),
                     Column(children: workouts),
                   ],
                 ),
@@ -84,20 +113,8 @@ class _DayState extends State<Day> {
           ),
         ]),
         appBar: AppBar(
-          // title: Text(
-          //
-          //   'Maandag, 25 oktober 2021',
-          //   style: TextStyle(color: Globals.textGrey, fontSize: 15),
-          // ),
-          //
-          //
-          // LOGO IMAGE:
-          // title: Image.asset(
-          //   'assets/gymigo_logo_final.png',
-          //   width: 85,
-          // ),
           title: Date(
-            day: 'Maandag',
+            day: data['day'] ?? '',
           ),
           centerTitle: true,
           backgroundColor: Globals.background,
@@ -110,15 +127,30 @@ class _DayState extends State<Day> {
               icon: const Icon(Icons.arrow_back)),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            keys++;
+          onPressed: () async {
+            Map widgets = data['widgets'];
+            if (widgets.isNotEmpty) {
+              widgets[(widgets.length).toString()] = {
+                'itemNum': 0,
+                'checked': false,
+                'exercise': 'Enter exercise here',
+              };
+              fireProv.updateData(data['day'], 'widgets', widgets);
+            } else {
+              fireProv.updateData(data['day'], 'widgets', {
+                '0': {
+                  'itemNum': 0,
+                  'checked': false,
+                  'exercise': 'Enter exercise here',
+                },
+              });
+            }
             workouts.add(Workout(
-              key: UniqueKey(),
-              itemNum: keys,
-              list: workouts,
-              callback: callback,
+              itemNum: widgets.length,
+              data: data,
+              // widgetData: widgets[(widgets.length -1).toString()],
             ));
-            setState(() {});
+            // setState(() {});
           },
           backgroundColor: Globals.purple,
           child: const Icon(Icons.add),

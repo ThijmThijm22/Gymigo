@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gymigo/pages/day.dart';
 
 // Pages
 import 'package:gymigo/pages/globals.dart';
 
 // Widgets
 import 'package:gymigo/widgets/checkbox.dart';
+
+// provider
+import 'package:provider/provider.dart';
+import 'package:gymigo/provider/firestoreprov.dart';
 
 class DayCard extends StatefulWidget {
   final String day;
@@ -24,6 +29,10 @@ class DayCard extends StatefulWidget {
 class _DayCardState extends State<DayCard> {
   @override
   Widget build(BuildContext context) {
+    var fireProv = Provider.of<FireProv>(context, listen: true);
+    var fireProvStream = Provider.of<List>(context, listen: true);
+
+
     return InkWell(
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -72,7 +81,21 @@ class _DayCardState extends State<DayCard> {
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(context, '/day');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => MultiProvider(
+              child: Day(day: widget.day,),
+              providers: 
+            [
+              StreamProvider<List>(
+          create: (context) => FireProv().getUserData,
+          initialData: const [],
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FireProv(),
+        ),
+            ]),
+        ));
       },
       splashFactory: NoSplash.splashFactory,
       highlightColor: const Color.fromRGBO(0, 0, 0, 0),

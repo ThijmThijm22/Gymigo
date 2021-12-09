@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-// // provider
-// import 'package:provider/provider.dart';
+// provider
+import 'package:provider/provider.dart';
+import 'package:gymigo/provider/firestoreprov.dart';
+
 // Pages
 import 'package:gymigo/pages/globals.dart';
 
@@ -11,16 +13,13 @@ import 'package:gymigo/widgets/checkbox.dart';
 
 // ignore: must_be_immutable
 class Workout extends StatefulWidget {
-  late List list;
   late int itemNum;
-  late Function callback;
-
+  late Map data;
+  // late Map widgetData;
   Workout({
     Key? key,
     required this.itemNum,
-    required this.list,
-    required this.callback,
-    bool? checked,
+    required this.data, // required Map widgetData
   }) : super(key: key);
 
   @override
@@ -33,6 +32,17 @@ class _WorkoutState extends State<Workout> {
 
   @override
   Widget build(BuildContext context) {
+    var fireProv = Provider.of<FireProv>(context, listen: true);
+    var fireProvStream = Provider.of<List>(context, listen: true);
+
+    setState(() {
+      
+    });
+
+    Map widgets = widget.data['widgets'];
+    // print(widgets);
+    print(widgets['3']);
+
     return Container(
         margin: const EdgeInsets.all(2),
         width: 360,
@@ -44,7 +54,7 @@ class _WorkoutState extends State<Workout> {
               child: Row(
                 children: [
                   Text(
-                    'Exercise',
+                    'Exercise: ${widget.itemNum == 0 ? widget.itemNum++ : widget.itemNum}',
                     style: TextStyle(
                         color: Globals.purple,
                         fontSize: 15,
@@ -60,15 +70,10 @@ class _WorkoutState extends State<Workout> {
                     ),
                   ),
                   const SizedBox(
-                    width: 180,
+                    width: 150,
                   ),
                   IconButton(
-                    onPressed: () {
-                      (widget.list).removeWhere(
-                          (item) => item.itemNum == widget.itemNum);
-                      widget.callback('random text');
-                      // setState(() {});
-                    },
+                    onPressed: () {},
                     icon: Icon(
                       Icons.delete,
                       color: Globals.purple,

@@ -26,21 +26,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.manropeTextTheme(),
-          primaryColor: Colors.white,
-        ),
-        initialRoute: '/home',
-        routes: {
-          '/splash': (context) => Splash(
-                routeTo: '/welcome',
-              ),
-          '/welcome': (context) => const Welcome(),
-          '/login': (context) => const Login(),
-          '/home': (context) => const HomeStream(),
-          '/day': (context) => const Day(),
-        });
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+        },
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            textTheme: GoogleFonts.manropeTextTheme(),
+            primaryColor: Colors.white,
+          ),
+          initialRoute: '/home',
+          routes: {
+            '/splash': (context) => Splash(
+                  routeTo: '/welcome',
+                ),
+            '/welcome': (context) => const Welcome(),
+            '/login': (context) => const Login(),
+            '/home': (context) => const HomeStream(),
+            '/day': (context) => Day(),
+          }),
+    );
   }
 }
